@@ -16,4 +16,4 @@ VivaSKon         | 039
 
 ###Изисквания към изпълнението:###
 * Използвайте Regular Expressions
-* Името на файла ви да е &lt;FirstName&gt;_&lt;LastName&gt;_MobileOperator.py, където замествате <FirstName> с вашето първо име и <LastName> с вашата фамилия. Имената ги пишете на латиница.
+* Името на файла ви да е &lt;FirstName&gt;_&lt;LastName&gt;_MobileOperator.py, където замествате &lt;FirstName&gt; с вашето първо име и &lt;LastName&gt; с вашата фамилия. Имената ги пишете на латиница.
