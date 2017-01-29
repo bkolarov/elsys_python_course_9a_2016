@@ -1,1 +1,75 @@
-0KHRitC30LTQsNCy0LDRgtC1INGE0LDQudC7INGBINC40LzQtTogRmlyc3ROYW1lX0xhc3ROYW1lX3Rhc2sxLnB5DQoNCiMj0JfQsNC00LDRh9CwIDEjIw0K0J3QsNC/0LjRiNC10YLQtSDRhNGD0L3QutGG0LjRjyBgYGB2YWxpZGF0ZV9wZXJzb25hbF9udW1iZXIobnVtYmVyKWBgYCwg0LrQvtGP0YLQviDQv9GA0LjQtdC80LAg0LDRgNCz0YPQvNC10L3RgiDQvtGCINGC0LjQvyBzdHJpbmcg0Lgg0L/RgNC+0LLQtdGA0Y/QstCwINC00LDQu9C4INC1INCy0LDQu9C40LTQvdC+INCV0JPQnS4gDQrQmNC30L/QvtC70LfQstCw0LnQutC4IHJlZ3VsYXIgZXhwcmVzc2lvbiDQv9GA0L7QstC10YDQtdGC0LUg0LTQsNC70Lgg0L3QvtC80LXRgNGK0YIg0L7RgtCz0L7QstCw0YDRjyDQvdCwINGB0LvQtdC00L3QuNGC0LUg0YPRgdC70L7QstC40Y86DQoNCiog0KfQvtCy0LXQutGK0YIsINC90LAg0LrQvtCz0L7RgtC+INC1INCV0JPQnS3RgtC+INGC0YDRj9Cx0LLQsCDQtNCwINC1INGA0L7QtNC10L0g0L/RgNC10LcgOTkt0YLQsCwg0YIu0LUuINGB0YLRgNC40L3Qs9GK0YIg0YLRgNGP0LHQstCwINC00LAg0LfQsNC/0L7Rh9Cy0LAg0YEgOTkuDQoqINCh0LvQtdC00LLQsNGJ0LjRgtC1INC00LLQtSDRhtC40YTRgNC4INGC0YDRj9Cx0LLQsCDQtNCwINGB0LAg0L3QsCDQstCw0LvQuNC00LXQvSDQvNC10YHQtdGGLiDQotC+0LXRgdGCINC10LTQvdC+INC+0YIg0LTQstC10YLQtSDRg9GB0LvQvtCy0LjRjzoNCiAgKiDQutC+0LzQsdC40L3QsNGG0LjRjyDQvdCwIGBgYDBgYGAg0YEg0YbQuNGE0YDQuNGC0LUg0L7RgiBgYGAxINC00L4gOWBgYC4g0J/RgNC40LzQtdGA0Lg6IGBgYDAxLCAwMiwgMDNgYGAg0Lgg0YLQvS4NCiAgKiDQutC+0LzQsdC40L3QsNGG0LjRjyDQvdCwIGBgYDFgYGAg0YEg0YbQuNGE0YDQuNGC0LUg0L7RgiBgYGAwINC00L4gMmBgYC4g0J/RgNC40LzQtdGA0Lg6IGBgYDEwLCAxMSwgMTJgYGAuDQoqINCh0LvQtdC00LLQsCDQtNC10L3Rj9GCINC90LAg0YDQsNC20LTQsNC90LUuINCh0LvQtdC00L3QuNGC0LUg0LLRitC30LzQvtC20L3QvtGB0YLQuDoNCiAgKiDQutC+0LzQsdC40L3QsNGG0LjRjyDQvdCwIGBgYDBgYGAg0Lgg0YbQuNGE0YDQuNGC0LUg0L7RgiBgYGAxINC00L4gOWBgYCAo0L/RgNC40LzQtdGAIGBgYDAxLCAwMiwgMDNgYGApDQogICog0YbQuNGE0YDQuNGC0LUg0L7RgiBgYGAxINC00L4gMmBgYCDRgSDRhtC40YTRgNC40YLQtSDQvtGCIGBgYDAg0LTQviA5YGBgICjQv9GA0LjQvNC10YAgYGBgMTAsIDExLCAxMiwgMTk7IDIwLCAyMSwgMjMsIDI5YGBgKQ0KICAqINC60L7QvNCx0LjQvdCw0YbQuNGPINC90LAgYGBgM2BgYCDRgSDRhtC40YTRgNC40YLQtSDQvtGCIGBgYDAg0LTQviAxYGBgICjQv9GA0LjQvNC10YAgYGBgMzAsIDMxYGBgKQ0KKiDQndCw0LrRgNCw0Y8g0LjQvNCwINC+0YnQtSA0INGB0LjQvNCy0L7Qu9CwLCDQutC+0LjRgtC+INC/0YDQvtGB0YLQviDRgtGA0Y/QsdCy0LAg0LTQsCDQsdGK0LTQsNGCINGG0LjRhNGA0LguINCiLtC1LiDQv9GA0L7QstC10YDRj9Cy0LDRgtC1INC4INC00LDQu9C4INC/0L7RgdC70LXQtNC90LjRgtC1IDQgDQogINGB0LjQvNCy0L7Qu9CwINC+0YIg0YHRgtGA0LjQvdCz0LAg0YHQsCDRhtC40YTRgNC4Lg0KICANCtCk0YPQvdC60YbQuNGP0YLQsCDQstGA0YrRidCwIFRydWUg0LDQutC+INC1INCy0LDQu9C40LTQvdC+INCV0JPQnSDQuCBGYWxzZSDQsNC60L4g0LUg0L3QtdCy0LDQu9C40LTQvdC+LiDQndCw0L/QvtC80L3Rj9C8INCy0LgsINGH0LUgYGBgVHJ1ZWBgYCDQuCBgYGBGYWxzZWBgYCDRgdCwINC00LLQtSDQsdGD0LvQtdCy0LggDQrRgdGC0L7QudC90L7RgdGC0LguINCd0JUg0LzQuCDQstGA0YrRidCw0LnRgtC1ICJUcnVlIiDQuCAiRmFsc2UiINC60LDRgtC+INGB0YLRgNC40L3Qs9C+0LLQtS4NCiANCtCi0LXRgdGC0L7QstC4INC00LDQvdC90Lg6DQoNClRydWUgICAgICAgfCBGYWxzZSAgICAgICB8INCT0YDQtdGI0L3Qvg0KLS0tLS0tLS0tLSB8IC0tLS0tLS0tLS0tIHwgLS0tLS0tLS0tLS0tLS0tDQo5OTAxMzA4NzU2IHwgOTgwMTMwODc1NiAgfCDQk9GA0LXRiNC90LAg0LPQvtC00LjQvdCwDQo5OTEwMzE4NTU2IHwgOTkyMjMxODU1NiAgfCDQk9GA0LXRiNC10L0g0LzQtdGB0LXRhg0KOTkxMjI5NTU0OSB8IDk5MTAzMjg1NTYgIHwg0JPRgNC10YnQtdC9INC00LXQvQ0KOTkwODA0Nzg5NiB8IDk5MTAzMTg1NTY1IHwg0J/Qvi3QtNGK0LvQs9C+INCV0JPQnQ0KOTkxMjE3ODU1NiB8IDk5MTAzMTg1ICAgIHwg0J/Qvi3QutGK0YHQviDQldCT0J0NCg0KIyPQl9Cw0LTQsNGH0LAgMiMjDQrQodGK0LfQtNCw0LLQsNGC0LUg0L3QvtCyINGE0LDQudC7INGBINC40LzQtSBGaXJzdE5hbWVfTGFzdE5hbWVfdGFzazIzLnB5DQoNCtCd0LDQv9C40YjQtdGC0LUg0LPQu9Cw0LLQvdCw0YLQsCDRhNGD0L3QutGG0LjRjyBgYGBpc192YWxpZChudW1iZXIsIG1lc3NhZ2UpYGBgLiDQmCDQtNCy0LDRgtCwINCw0YDQs9GD0LzQtdC90YLQsCDRgtGA0Y/QsdCy0LAg0LTQsCDRgdCwIHN0cmluZy4g0JLRitGC0YDQtSDQsiANCmBgYGlzX3ZhbGlkKG51bWJlciwgbWVzc2FnZSlgYGAg0LTQtdGE0LjQvdC40YDQsNGC0LUg0YTRg9C90LrRhtC40Y/RgtCwIGBgYHZhbGlkYXRlKClgYGAsINC90L4g0YLQvtC30Lgg0L/RitGCINCx0LXQtyDQsNGA0LPRg9C80LXQvdGCLiDQktGK0YLRgNC10YjQvdCw0YLQsCANCtGE0YPQvdC60YbQuNGPINGJ0LUg0LjQt9C/0L7Qu9C30LLQsCDQsNGA0LPRg9C80LXQvdGC0LAgYGBgbnVtYmVyYGBgINC90LAg0LLRitC90YjQvdCw0YLQsC4g0JIgYGBgaXNfdmFsaWQobnVtYmVyLCBtZXNzYWdlKWBgYCAo0LPQu9Cw0LLQvdCw0YLQsCDRhNGD0L3QutGG0LjRjykg0LLRgNGK0YnQsNGC0LUg0LLRitGC0YDQtdGI0L3QsNGC0LAg0YTRg9C90LrRhtC40Y8gYGBgdmFsaWRhdGVgYGAg0LrQsNGC0L4g0L7QsdC10LrRgi4NCg0KYGBgdmFsaWRhdGUoKWBgYCAtINCS0YrRgtGA0LUg0LIg0L3QtdGPINC/0YDQvtCy0LXRgNGP0LLQsNGC0LUg0LTQsNC70LggbnVtYmVyINC1INC80LXQttC00YMgOCDQuCAxMyDRgdC40LzQstC+0LvQsCAo0LLQutC70Y7Rh9C40YLQtdC70L3QvikuINCSINC00LLQsNGC0LAg0YDQsNC30LvQuNGH0L3QuCDRgdC70YPRh9Cw0Y8gDQrQv9GA0LDQstC40YLQtSDRgdC70LXQtNC90L7RgtC+Og0KKiBUcnVlIChudW1iZXIg0LUg0YEg0LTRitC70LbQuNC90LAgPj0gOCBvciA8PSAxMykgLSDQktGA0YrRidCw0YLQtSDRgdGC0YDQuNC90LPQsCBgYGAndmFsaWQnYGBgIC0gYGBgcmV0dXJuICd2YWxpZCdgYGANCiogRmFsc2UgKG51bWJlciDQtSDRgSDQtNGK0LvQttC40L3QsCA8PSA4IG9yID49IDEzKSAtINCf0YDQuNGB0LLQvtGP0LLQsNGC0LUg0L3QsCBtZXNzYWdlINC90L7QstCwINGB0YLQvtC50L3QvtGB0YIg0Lgg0LLRgNGK0YnQsNGC0LUg0L3QtdCz0L4gLSANCmBgYHB5dGhvbg0KbWVzc2FnZSA9IG1lc3NhZ2UuZm9ybWF0KCdpbnZhbGlkJykgIyDRgtC+0YfQvdC+INGC0L7QstCwINGC0YPQuiDQuNGB0LrQsNC8DQpyZXR1cm4gbWVzc2FnZQ0KYGBgDQoNCtCX0LAg0YLQtdGB0YLQvtCy0Lgg0LTQsNC90L3QuCDQv9C+0LvQt9Cy0LDQudGC0LUg0YLQvtC30LggdHVwbGU6DQpgYGBweXRob24NCnRlc3RfZGF0YSA9ICgNCiAgKCcxMjM0NTY3ODknLCAnTnVtYmVyIGlzIHZhbGlkJyksDQogICgnMTIzNDU2NycsICdOdW1iZXIgaXMgezB9JyksDQogICgnMTIzNDU2Nzg5MTAnLCAnVGhpcyBpcyB2YWxpZCcpLA0KICAoJzEyMzQ1Njc4OTEwMTE0JywgJ1RoaXMgaXMgezB9KQ0KKQ0KYGBgDQoNCg0KIyPQl9Cw0LTQsNGH0LAgMyMjDQrQoNC10LHQvtGC0LjRgtC1INCyINGB0YrRidC40Y8g0YTQsNC50LsuDQoNCtCU0LXRhNC40L3QuNGA0LDRgtC1INGE0YPQvdC60YbQuNGPIGBgYGdldF9tZXNzYWdlcyhkYXRhKWBgYCwg0LrQvtGP0YLQviDQv9GA0LjQtdC80LAgdHVwbGUg0L7RgiB0dXBsZeKAk9C4INC60LDRgtC+INGC0L7Qt9C4INCyINC/0YDQtdC00L3QsNGC0LAg0LfQsNC00LDRh9CwICh0ZXN0X2RhdGEpLiANCtCY0LfQv9C+0LvQt9Cy0LDQudC60LggbGlzdCBjb21wcmVoZW5zaW9uLCDRhNGD0L3QutGG0LjRj9GC0LAg0YLRgNGP0LHQstCwINC00LAg0LLRgNGK0YnQsCBsaXN0INC+0YIg0YHRgtGA0LjQvdCz0L7QstC10YLQtSwg0LrQvtC40YLQviDQstGK0YLRgNC10YjQvdCw0YLQsCDRhNGD0L3QutGG0LjRjyANCmBgYHZhbGlkYXRlKClgYGAg0LLRgNGK0YnQsC4NCg0KIyMjIEhpbnQgIyMjDQrQmNGC0LXRgNC40YDQsNGC0LUg0L/QviBkYXRhLCDQt9CwINCy0YHQtdC60Lgg0LXQu9C10LzQtdC90YIg0L3QsCBkYXRhINC40LfQstC40LrQstCw0YLQtSBgYGBpc192YWxpZChudW1iZXIsIG1lc3NhZ2UpYGBgLCDQutCw0YLQviDQt9C90LDQtdGC0LUsINGH0LUgYGBgaXNfdmFsaWRgYGAg0LLRgNGK0YnQsA0K0YTRg9C90LrRhtC40Y8uINCf0LDQt9C40YLQtSDQstGK0YDQvdCw0YLQuNGC0LUg0YTRg9C90LrRhtC40LgsINC40YLQtdGA0LjRgNCw0YLQtSDQv9C+INGC0Y/RhSDQutCw0YLQviDQs9C4INC40LfQstC40LrQstCw0YLQtSDQuCDQstGA0YrRidCw0YLQtSDQu9C40YHRgiDRgSDRgNC10LfRg9C70YLQsNGC0LjRgtC1LiDQn9C+0LvQt9Cy0LDQudGC0LUgbGlzdCBjb21wcmVoZW5zaW9uLg0KDQoNCiMg0JvQuNC90Log0LfQsCDQv9GA0LXQtNCw0LLQsNC90LUgIw0KaHR0cHM6Ly9teS5wY2xvdWQuY29tLyNwYWdlPXB1cGxpbmsmY29kZT13Y3VaUVB1Mzh5bUNIbVNVYWk2OHNpUnQ2YmF0NVZUWA0K
+Създавате файл с име: FirstName_LastName_task1.py
+
+##Задача 1##
+Напишете функция ```validate_personal_number(number)```, която приема аргумент от тип string и проверява дали е валидно ЕГН. 
+Използвайки regular expression проверете дали номерът отговаря на следните условия:
+
+* Човекът, на когото е ЕГН-то трябва да е роден през 99-та, т.е. стрингът трябва да започва с 99.
+* Следващите две цифри трябва да са на валиден месец. Тоест едно от двете условия:
+  * комбинация на ```0``` с цифрите от ```1 до 9```. Примери: ```01, 02, 03``` и тн.
+  * комбинация на ```1``` с цифрите от ```0 до 2```. Примери: ```10, 11, 12```.
+* Следва денят на раждане. Следните възможности:
+  * комбинация на ```0``` и цифрите от ```1 до 9``` (пример ```01, 02, 03```)
+  * цифрите от ```1 до 2``` с цифрите от ```0 до 9``` (пример ```10, 11, 12, 19; 20, 21, 23, 29```)
+  * комбинация на ```3``` с цифрите от ```0 до 1``` (пример ```30, 31```)
+* Накрая има още 4 символа, които просто трябва да бъдат цифри. Т.е. проверявате и дали последните 4 
+  символа от стринга са цифри.
+  
+Функцията връща True ако е валидно ЕГН и False ако е невалидно. Напомням ви, че ```True``` и ```False``` са две булеви 
+стойности. НЕ ми връщайте "True" и "False" като стрингове.
+ 
+Тестови данни:
+
+True       | False       | Грешно
+---------- | ----------- | ---------------
+9901308756 | 9801308756  | Грешна година
+9910318556 | 9922318556  | Грешен месец
+9912295549 | 9910328556  | Грещен ден
+9908047896 | 99103185565 | По-дълго ЕГН
+9912178556 | 99103185    | По-късо ЕГН
+
+##Задача 2##
+Създавате нов файл с име FirstName_LastName_task23.py
+
+Напишете главната функция ```is_valid(number, message)```. И двата аргумента трябва да са string. Вътре в 
+```is_valid(number, message)``` дефинирате функцията ```validate()```, но този път без аргумент. Вътрешната 
+функция ще използва аргумента ```number``` на външната. В ```is_valid(number, message)``` (главната функция) връщате вътрешната функция ```validate``` като обект.
+
+```validate()``` - Вътре в нея проверявате дали number е между 8 и 13 символа (включително). В двата различни случая 
+правите следното:
+* True (number е с дължина >= 8 or <= 13) - Връщате стринга ```'valid'``` - ```return 'valid'```
+* False (number е с дължина <= 8 or >= 13) - Присвоявате на message нова стойност и връщате него - 
+```python
+message = message.format('invalid') # точно това тук искам
+return message
+```
+
+За тестови данни ползвайте този tuple:
+```python
+test_data = (
+  ('123456789', 'Number is valid'),
+  ('1234567', 'Number is {0}'),
+  ('12345678910', 'This is valid'),
+  ('12345678910114', 'This is {0})
+)
+```
+
+
+##Задача 3##
+Реботите в същия файл.
+
+Дефинирате функция ```get_messages(data)```, която приема tuple от tuple–и като този в предната задача (test_data). 
+Използвайки list comprehension, функцията трябва да връща list от стринговете, които вътрешната функция 
+```validate()``` връща.
+
+### Hint ###
+Итерирате по data, за всеки елемент на data извиквате ```is_valid(number, message)```, като знаете, че ```is_valid``` връща
+функция. Пазите върнатите функции, итерирате по тях като ги извиквате и връщате лист с резултатите. Ползвайте list comprehension.
+
+
+# Линк за предаване #
+https://my.pcloud.com/#page=puplink&code=wcuZQPu38ymCHmSUai68siRt6bat5VTX
+
+
+
+s
