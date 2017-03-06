@@ -30,7 +30,7 @@ def say_hi():
 say_hi()
 ```
 
-При изпълняване на командния ред ``` python3 greetings.py ``` в конзолата, веднага можем да кажем какво ще се случи:
+При изпълняване на командния ред `python3 greetings.py` в конзолата, веднага можем да кажем какво ще се случи:
 * Python ще зареди скрипта ни
 * ще прочете, че сме дефинирали функцията ```say_hi()```
 * ще види, че я извикваме и ще я изпълни. Като резултат ще принтира 'Haiiiii' на екрана
@@ -63,6 +63,7 @@ ___
 
 
 Ето го отново нашият модул `greetings.py`, но променен:
+
 ### greetings.py ###
 ```python
 message = ''
@@ -109,6 +110,7 @@ import greetings
 
 greetings.say_hi() # check the output
 ```
+`python3 messenger.py`
 
 Променяме леко `messenger.py`:
 ### messenger.py ###
@@ -120,7 +122,7 @@ greetings.say_hi() # check the output
 greetings.set_bye()
 greetings.say_hi() # check the output
 ```
-
+`python3 messenger.py`
 
 # МАЙМУНИ В РОКЛИ #
 Привличам ви вниманието, тъй като тук трябва да се концентрирате повече.
@@ -165,8 +167,47 @@ greetings.say_hi() # check the output
 
 print_greeting()
 ```
+`python3 messenger.py`
 
 Можем да го обобщим и по следния начин - В рамките на изпълнението на нашия скрипт, колкото и пъти да добавим един модул, неговото състояние е едно и също и **не се променя** със всеки следващ `import`.
 
+Пробвайте и това:
+
+### messenger.py ###
+```python
+import greetings
+
+greetings.set_bye()
+
+import greeter
+greeter.greet()
+```
+
+### greetings.py ###
+```python
+message = ''
+
+def say_hi():
+	print(message)
 
 
+def set_bye():
+	global message
+	message = 'byeeee'
+
+def set_hi():
+	global message
+	message = 'haiiii'
+
+set_hi()
+```
+
+### greeter.py ###
+```python
+import greetings
+
+def greet():
+	greetings.say_hi()
+```
+
+`python3 messenger.py`
