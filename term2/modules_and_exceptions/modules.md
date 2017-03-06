@@ -131,6 +131,42 @@ greetings.say_hi() # check the output
 `set_hi()`, съответно `message` ще бъде такова, каквото сме го оставили преди.
 
 
+Това звучи като "дай пример".
+
+### greetings.py ###
+```python
+message = ''
+
+def say_hi():
+	print(message)
+
+def set_bye():
+	global message
+	message = 'byeeee'
+
+def set_hi():
+	global message
+	message = 'haiiii'
+
+set_hi()
+```
+
+### messenger.py ###
+```python
+import greetings
+
+def print_greeting():
+	import module1
+	module1.say_hi() # check the output
+
+greetings.say_hi() # check the output
+greetings.set_bye()
+greetings.say_hi() # check the output
+
+print_greeting()
+```
+
+
 
 
 
