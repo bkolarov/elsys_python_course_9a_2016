@@ -211,3 +211,68 @@ def greet():
 ```
 
 `python3 messenger.py`
+___
+
+# Пакети #
+Когато работим по големи проекти, ако ги пишем, както трябва, ще се озовем с голямо количество файлове, които в нашия случай ще бъдат основно модули. За да можем, като програмисти, по-лесно да се оритентираме сред всичките тези модули, ние ги разделяме в пакети.
+
+Представете си пакетите като папки. Те всъщност са си папки. Всеки пакет може да съдържа в себе си модули и други пакети. Модулите и пакетите в един общ пакет се очаква да имат обща смислена връзка помежду си.
+
+
+Всеки пакет в Python **трябва** да съдържа специален файл с име `__init__.py`. Този файл казва на Python, че директорията, в която е, е Python пакет. Знаейки това Python позволява този пакет да бъде използван с `import` също като модулите. 
+
+
+За пример ще използваме файловете от раздела с модули. Ще разбием файловете по този начин:
+```
+messenger/
+├── messenger.py
+└── greet
+    ├── __init__.py
+    ├── greetings.py
+    └── greeter.py
+```
+
+Ето ги и файловете, променени, така че да използват пакетите:
+### dir messenger: ###
+### messenger.py ###
+```python
+import greet.greetings as greetings
+
+greetings.set_bye()
+
+import greet.greeter as greeter
+greeter.greet()
+```
+
+### dir greet: ###
+### __init__.py ###
+```python
+#empty
+```
+
+### greeter.py ###
+```python
+import greet.greetings as greetings
+
+def greet():
+	greetings.say_hi()
+```
+
+### greetings.py ###
+```python
+message = ''
+
+def say_hi():
+	print(message)
+
+
+def set_bye():
+	global message
+	message = 'byeeee'
+
+def set_hi():
+	global message
+	message = 'haiiii'
+
+set_hi()
+```
