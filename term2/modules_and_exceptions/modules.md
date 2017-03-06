@@ -61,3 +61,56 @@ say_hi()
 Може да си го представите по следния начин - Каквото се е случвало досега, когато изпълним 
 
 ```python3 our_script.py```, това се случва и като използваме някой модул в нашия скрипт, посредством ```import```.
+
+
+### Още важно ###
+Ако в модула, който използваме в нашия скрипт има глобални променливи, то те остават едни и същи до края на изпълнението на скрипта ни. Изгубих ви? Споко :)
+
+
+Ето го отново нашият модул ```greetings.py```, но променен:
+### greetings.py ###
+```python
+message = ''
+
+def say_hi():
+	print(message)
+
+def set_bye():
+	global message
+	message = 'byeeee'
+
+def set_hi():
+	global message
+	message = 'haiiii'
+
+set_hi()``` 
+
+Имаме глобална променлива message. Тя може да бъде променяна с функциите ```set_hi()``` и ```set_bye()```. Вижда се, че след всички дефиниции се извиква set_hi(). Това какво значеше? - че ако изпълним ```python3 greetings.py``` или го използваме в друг модул с ```import greeetings```, ```set_hi()``` ще се извика и ```message``` ще се инициализира с ```'haiiii'```.
+
+Не ми вярвате? Ами ето:
+
+### greetings.py ###
+```python
+message = ''
+
+def say_hi():
+	print(message)
+
+def set_bye():
+	global message
+	message = 'byeeee'
+
+def set_hi():
+	global message
+	message = 'haiiii'
+
+set_hi()``` 
+
+### messenger.py ###
+```python
+import greetings
+
+greetings.say_hi()
+```
+
+
