@@ -224,10 +224,10 @@ ___
 
 За пример ще използваме файловете от раздела с модули. Ще разбием файловете по този начин:
 ```
- messenger
+ messenger/
     ├── messenger.py
     ├── __init__.py
-    └── greet
+    └── greet/
         ├── __init__.py
         ├── greetings.py
         └── greeter.py
