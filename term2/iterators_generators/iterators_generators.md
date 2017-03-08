@@ -146,7 +146,7 @@ for a in obj: # Python calls iter(obj: iterable = iter(obj) - and then starts it
 
 *Бележка: Както имаме функцията iter(obj), която извиква `__iter__()` на обекта и очаква тя да върне `iterable`, така и функцията next(obj) извиква `__next__()`, за да вземе следващата стойност.*
 
-В посочения пример `OurIterator` е и итератор и може да бъде итериран (it's both an iterator and iterable). `iterable` е, защото функцията `__iter__()` връща себе си. 
+В посочения пример `OurIterator` е и итератор и може да бъде итериран (it's both an iterator and iterable). `iterator` е, защото има функцията `__iter__()` и тя връща същия обект от тип `OurIterator`, който има функцията `__next__()`, т.е. връща `iterable` обект. В нашия случай `iterator` обектът и `iterable` обектът са един и същи.
 
 ```python
 class OurIterator:
@@ -160,7 +160,30 @@ class OurIterator:
 		pass
 	
 obj = OurIterator()
+# We have '__iter__()`, we can call iter(obj)
 iterator = iter(obj) # In our case this will return obj (see how __iter__() returns self). obj is iterable because it has __next__()
+# In this case iterator is the same as obj, because __iter__() returns self.
 value1 = next(iterator)
 value2 = next(iterator)
+```
+
+Все още не сме готови обаче... Нека дадем смисъл на нашия клас `OurIterator` и го направим итератор, който ще има същата роля като `range()`. Неговата работа ще е при итериране да дава числата от 0 до максималното подадено число.
+
+```python
+class OurIterator:
+	def __init__(self, max_num):
+		self.max_num = max_num
+		
+	def __iter__(self):
+		self.cur_num = 0
+		return self
+		
+	def __next__(self):
+		number = self.cur_num
+		self.cur_num += 1
+		
+		
+		
+		return number
+		
 ```
