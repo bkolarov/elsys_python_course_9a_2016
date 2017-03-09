@@ -190,6 +190,37 @@ class OurIterator:
 
 Накрая трябва да кажем кога това нещо ще спре. Трябва да проверим кога сме достигнали максималното число и да кажем на Python да спре да вика нашия `__next__()`.
 
+```python
+class OurIterator:
+	def __init__(self, max_num):
+		self.max_num = max_num
+		
+	def __iter__(self):
+		self.cur_num = 0
+		return self
+		
+	def __next__(self):
+		number = self.cur_num
+		
+		if number == self.max_num:
+			raise StopIteration # This is how you tell Python to stop calling __next__() in an iterator.
+		
+		self.cur_num += 1
+		return number
+```
+
+Знаете как, когато имате грешка в кода и Python ви изхвърля някаква грешка. Тази грешка се нарича `Exception`. За `Exception`и ще говорим допълнително, но за момента ви стига да знаете, че когато ние кажем `raise StopIteration` в `__next__()`, Python ще разбере, че трябва да спре да извиква този метод. Все едно Python се е абонирал и чака да му кажем `StopIteration`. 
+
+*Бележка: в тялото на `for` цикъла не е препоръчително да използвате `raise StopIteration` вместо `break`, както не можете в итератор да използвате `break` вместо `raise StopIteration`*
+
+```python
+for i in range(10):
+	if i == 3:
+		raise StopIteration
+	print(i)
+```
+*Това ще спре цикъла, но ще ви изведе и грешка на изхода. Пробвайте :)))*
+
 
 ```python
 class OurIterator:
@@ -204,8 +235,42 @@ class OurIterator:
 		number = self.cur_num
 		
 		if number == self.max_num:
-			raise StopIteration
+			raise StopIteration # This is how you tell Python to stop calling __next__() in an iterator.
 		
 		self.cur_num += 1
 		return number
+		
+obj = OurIterator(10)
+for i in obj:
+	print(i)
+```
+
+Готови сме. Пробвайте!
+
+Още код за пробване:
+
+```python
+class OurIterator:
+	def __init__(self, max_num):
+		self.max_num = max_num
+		
+	def __iter__(self):
+		self.cur_num = 0
+		return self
+		
+	def __next__(self):
+		number = self.cur_num
+		
+		if number == self.max_num:
+			raise StopIteration # This is how you tell Python to stop calling __next__() in an iterator.
+		
+		self.cur_num += 1
+		return number
+		
+obj = OurIterator(3)
+iterator = iter(obj)
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
 ```
