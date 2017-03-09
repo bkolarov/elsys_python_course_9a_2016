@@ -161,10 +161,10 @@ class OurIterator:
 	
 obj = OurIterator()
 # We have '__iter__()`, we can call iter(obj)
-iterator = iter(obj) # In our case this will return obj (see how __iter__() returns self). obj is iterable because it has __next__()
+iterable = iter(obj) # In our case this will return obj (see how __iter__() returns self). obj is iterable because it has __next__()
 # In this case iterator is the same as obj, because __iter__() returns self.
-value1 = next(iterator)
-value2 = next(iterator)
+value1 = next(iterable)
+value2 = next(iterable)
 ```
 
 Все още не сме готови обаче... Нека дадем смисъл на нашия клас `OurIterator` и го направим итератор, който ще има същата работа като `range()`. Тя ще е при итериране да дава числата от 0 до максималното подадено число.
@@ -268,9 +268,31 @@ class OurIterator:
 		return number
 		
 obj = OurIterator(3)
-iterator = iter(obj)
-print(next(iterator))
-print(next(iterator))
-print(next(iterator))
-print(next(iterator))
+iterable = iter(obj)
+print(next(iterable))
+print(next(iterable))
+print(next(iterable))
+print(next(iterable))
 ```
+___
+Цялата последователност - for иска обектът да има `__iter__()` функцията, тази функция да връща обект, който има `__next__()` се нарича итератор протокол.
+
+### Iterator Protocol ###
+Това са обобщено изискванията, които класът на един обект трябва да спазва, за да може да бъде използван във `for`. 
+```python
+for a in obj:
+	pass
+```
+Класът на `obj` трябва:
+1. Да има `__iter__()` метод
+2. `__iter__()` методът му да връща `iterable` обект
+3. `iterable` обектът е обект, който има `__next__()`
+
+По-долу трябва да се показва схемата на итератор протокола:
+(calls `__iter__()` internally, returns `iterable`)
+for: iter(obj) -> iterable; 
+(calls `__next__()` internally, returns value)
+next(iterable) -> value; 
+next(iterable) -> value; 
+next(iterable) -> value
+...
