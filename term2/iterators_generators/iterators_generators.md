@@ -296,3 +296,33 @@ next(iterable) -> value; <br>
 next(iterable) -> value; <br>
 next(iterable) -> value<br>
 ...<br>
+
+___
+```python
+class OurRange:
+	def __init__(self, max_num):
+		self.max_num = max_num
+		
+	def get_max(self):
+		return self.max_num
+		
+class RangeIterator:
+	def __init__(self, our_range):
+		self.our_range = our_range
+		
+	def __iter__(self):
+		self.cur_num = 0
+		return self
+		
+	def __next__(self):
+		num = self.cur_num
+		
+		if num == self.our_range.get_max():
+			raise StopIteration
+		
+		self.cur_num += 1
+		return num
+
+
+
+```
