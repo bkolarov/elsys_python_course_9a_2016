@@ -289,10 +289,10 @@ for a in obj:
 3. `iterable` обектът е обект, който има `__next__()`
 
 По-долу трябва да се показва схемата на итератор протокола:
-(calls `__iter__()` internally, returns `iterable`)
-for: iter(obj) -> iterable; 
-(calls `__next__()` internally, returns value)
-next(iterable) -> value; 
-next(iterable) -> value; 
-next(iterable) -> value
-...
+(calls `__iter__()` internally, returns `iterable`)<br>
+for: iter(obj) -> iterable; <br>
+(calls `__next__()` internally, returns value)<br>
+next(iterable) -> value; <br>
+next(iterable) -> value; <br>
+next(iterable) -> value<br>
+...<br>
