@@ -422,8 +422,6 @@ def range_gen(max):
 	return
 	# We are done. We return. Same as the above.
 ```
-*Пробвайте да добавите друг `if` в цикъла и в него вместо `yield`, използвайте `return`. Вижте резултата.*
-
 ```python
 def range_gen(max):
 	number = 0
@@ -444,3 +442,4 @@ Traceback (most recent call last):
 StopIteration
 '''
 ```
+*Пробвайте да добавите друг `if` в цикъла и в него вместо `yield`, използвайте `return`. Вижте резултата.*
