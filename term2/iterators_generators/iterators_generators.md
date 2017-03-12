@@ -373,5 +373,74 @@ print(dir(gen))
 '__sizeof__', '__str__', '__subclasshook__', 'close', 'gi_code', 'gi_frame', 'gi_running', 'gi_yieldfrom',<br> 
 'send', 'throw']
 </pre>
+*С удебелени букви са отбелязани двата метода `__iter__` и `__next__`.*
 
+След `yield` ние сме оставили променливата `number`. Това, което подадем на `yield`, това ще е обектът, който ще ни се върне, когато започнем да итерираме по генератора и `__next__` бъде извикан. Разбрахте, че в един итератор `__next__()` връща следващата стойност. При генераторите, това, което подадем на `yield`, то ще бъде връщано от `__next__()`. 
+<br>
+Всеки път, когато се извика `__next__` на генератора, ние ще продължим от там, до където сме стигнали предния път във функцията. В нашия пример това означава:
+* Веднъж сме дали пауза с `yield. Имаме генератор и итерираме по него
+* Извиква се за първи път next(gen) (това извиква вътрешната `__next__()` функция). Това връща 0 (първото число)
+* Запазва се състоянието на функцията. `number` е 0.
+* Извиква се следващия next(gen). Продължаваме след `yield`-а. `number` се увеличава и става 1. Минаваме пак през условието на цикъла. 1 < 10. 
+* `yield` се среща отново. Запазва се новото състояние на функцията. `number` е 1. Вторият `next(gen)` връща 1.
+* Това се повтаря, докато:
+    - не приключи цикълът
+    - спрем да викаме next(gen), ако не използваме генератор в цикъл, а работим с него ръчно.
 
+```python
+def range_gen(max):
+	number = 0
+	while number < max:
+		yield number
+		number += 1
+		
+gen = range_gen(10)
+iterable = iter(gen)
+print(next(iterable)) # 0
+print(next(iterable)) # 1
+print(next(iterable)) # 2
+print(next(iterable)) # 3
+```
+
+При итераторите казахме, че итераторът казва кога да спрем да итерираме с него с `raise StopIteration`. При генераторите, това става автоматично, когато вътре в генератор функцията не се извика `yield` и функцията приключи работата си или с `return`. То е едно и също.
+
+```python
+def range_gen(max):
+	number = 0
+	while number < max:
+		yield number
+		number += 1
+	# We are done. We return
+```
+
+```python
+def range_gen(max):
+	number = 0
+	while number < max:
+		yield number
+		number += 1
+	return
+	# We are done. We return. Same as the above.
+```
+*Пробвайте да добавите друг `if` в цикъла и в него вместо `yield`, използвайте `return`. Вижте резултата.*
+
+```python
+def range_gen(max):
+	number = 0
+	while number < max:
+		yield number
+		number += 1
+		
+gen = range_gen(4)
+iterable = iter(gen)
+print(next(iterable)) # 0
+print(next(iterable)) # 1
+print(next(iterable)) # 2
+print(next(iterable)) # 3
+print(next(iterable)) 
+'''
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+'''
+```
