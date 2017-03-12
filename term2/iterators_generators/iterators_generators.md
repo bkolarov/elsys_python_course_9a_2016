@@ -288,7 +288,7 @@ for a in obj:
   1. `__iter__()` методът му да връща `iterable` обект
   1. `iterable` обектът е обект, който има `__next__()`
 
-По-долу трябва да се показва схемата на итератор протокола:
+По-долу е схемата на итератор протокола:
 (calls `__iter__()` internally, returns `iterable`)<br>
 for: iter(obj) -> iterable; <br>
 (calls `__next__()` internally, returns value)<br>
@@ -303,17 +303,17 @@ class OurRange:
 	def __init__(self, max_num):
 		self.max_num = max_num
 		
+	def __iter__(self):
+		return RangeIterable(self)
+		
 	def get_max(self):
 		return self.max_num
 		
-class RangeIterator:
+class RangeIterable:
 	def __init__(self, our_range):
-		self.our_range = our_range
-		
-	def __iter__(self):
 		self.cur_num = 0
-		return self
-		
+		self.our_range = our_range
+	
 	def __next__(self):
 		num = self.cur_num
 		
@@ -323,6 +323,9 @@ class RangeIterator:
 		self.cur_num += 1
 		return num
 
-
-
+our_range = OurRange(10)
+for i in our_range:
+	print(i)
 ```
+
+В този пример `iterable` обектът е отделен да бъде създаван с друг клас - `RangeIterable`. В `OurRange` вместо да се връща същия обект, на който е извикано `iter()`, се създава нов обект, който принадлежи на класа `RangeIterable`. Въпреки това, `RangeIterable` има метода `__next__()`, следователно е `iterable` и протоколът е спазен.
