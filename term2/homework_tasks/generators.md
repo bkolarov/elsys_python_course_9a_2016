@@ -4,6 +4,7 @@
 Домашното предавате на посочения долу адрес. Срок 25.03.2017 (събота).
 https://my.pcloud.com/#page=puplink&code=Df2ZsO1o3nVDeXkpkJrPcPD4cFkCsMKX
 
+*Бележка: файлът трябва да мога да го изпълня с `python3 FirstName_LastName_generators.py` в командния ред. Ако пишете домашното в конзолата и copy-paste–вате, проверете дали тръгва :)*
 ___
 
 ### Задача ###
