@@ -14,8 +14,9 @@
     - `main_controller` - добавя в себе си `layout_loader` и `client`. Трябва да има дефинирана в себе си функцията `start()`, която принтира на екрана `'starting app'`. 
 	Накрая дефинирате трета функция `on_message_received(message)`. Тя принтира на екрана подаденото съобщение по следния начин: `'main_controller - on_message_received: ' + message`. 
 	В `start()` извивкате функциите `send_message(message)` и `register_message_received(callback)`, дефинирани в client. На `send_message()` подавате `'outgoing message'`, а на `register_message_received()` - `on_message_received`.
+	- `layout_loader` - инициализира при добавяне променливата `layout_id` със стойност `438438`. Дефинира функция `load_layout()`, която принтира на екрана `'layout with id $$ - loaded'`. Заменяте `'$$'` с id-to, което сте инициализирали.
 	
-1. networking
+1. networking:
     - `config` - Държи две променливи - `ip_address`, `port`. При `import` на този модул, `ip_address` се инициализира с `'123.34.22.19'`, а `port` с `'992'`.
     - `connector` - добавя в себе си `config`. Има в себе си няколко функции:
         * `connect()` - извиква се при инициализация на модула. Вътре в нея се изкарват на екрана ip–то и порта от `config` модула. Двете се разделят с `':'`. Т.е. в нашия случай трябва да изкара `'123.34.22.19:992'`.
