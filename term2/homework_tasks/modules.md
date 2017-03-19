@@ -1,6 +1,6 @@
 Създайте структура от пакети и модули за чат приложение. Главният пакет се казва messenger. В него има модул на име `main`. Освен модула, вътре има два други пакета - `ui` и `networking`. 
 * `ui` - съдържа два модула - `main_controller` и `layout_loader`. `layout_loader` не трябва да може да може да бъде добавен с `from ui import *`.
-* `networking` - съдържа два модула - `client`, `connector` и `config`. `connector` и `config` не трябва да могат да бъдат добавени с `from networking import *`.
+* `networking` - съдържа три модула - `client`, `connector` и `config`. `connector` и `config` не трябва да могат да бъдат добавени с `from networking import *`.
 
 Фукнционалността, ще бъде почти никаква. Модулите трябва само да имат някаква инициализация и някоя друга дефинирана функция.
 
