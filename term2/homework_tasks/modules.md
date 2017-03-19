@@ -12,8 +12,8 @@
     - `main` - Извиква дефинираната в `main_controller` функция `start()`
 1. ui:
     - `main_controller` - добавя в себе си `layout_loader` и `client`. Трябва да има дефинирана в себе си функцията `start()`, която принтира на екрана `'starting app'`. 
-	Накрая дефинирате трета функция `on_message_received(message)`. Тя принтира на екрана подаденото съобщение по следния начин: `'main_controller - on_message_received: ' + message`. 
-	В `start()` извивкате функциите `send_message(message)` и `register_message_received(callback)`, дефинирани в client. На `send_message()` подавате `'outgoing message'`, а на `register_message_received()` - `on_message_received`.
+	После дефинирате функцията `on_message_received(message)`. Тя принтира на екрана подаденото съобщение по следния начин: `'main_controller - on_message_received: ' + message`. 
+	В `start()` извивкате функциите `send_message(message)` и `register_message_received(callback)`, дефинирани в client. На `send_message()` подавате `'outgoing message'`, а на `register_message_received()` **подавате функцията** `on_message_received`.
 	- `layout_loader` - инициализира при добавяне променливата `layout_id` със стойност `438438`. Дефинира функция `load_layout()`, която принтира на екрана `'layout with id $$ - loaded'`. Заменяте `'$$'` с id-to, което сте инициализирали.
 	
 1. networking:
