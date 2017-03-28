@@ -51,3 +51,28 @@ print (do_something) # output 3
 Имаме функцията `do_something`, или по-точно имаме името `do_something`, което сочи към функция. После взимаме това име и му казваме, че вече сочи към цифрата 3.
 
 Както ние казваме на имената към какво да сочат, така и `def` казва на името след него (в първоначалния пример `pow`) да сочи към обекта функция.
+
+
+Именно защото `def` е изпълним код и се случва в реално време, по време на изпълнението на програмата, това е причината да можем да дефинираме функция почти навсякъде в кода. Дали ще срещнем `def` в някой `if` или в някой `for` цикъл, или пък в друга функция, това ще се изпълни, както всичко друго би се изпълнило на негово място. Ще се изпълни и ще създаде функция.
+
+```python
+def define_printer(number): # creates function and define_printer points to it
+  if number <= 10:
+    def printer_less(): # in this case we define function with body print('<= 10') and print_less points to it
+      print('<= 10')
+      
+    # we create another name, printer, that points to the same object that printer_less points to.
+    # in this case both printer and printer_less point to the function object
+    printer = printer_less 
+  else:
+    def printer_greater(): # otherwise we define function with body print('> 10') and printer_greater points to it
+      print('> 10')
+    
+    # we create another name, printer, that points to the same object that printer_greater points to.
+    # in this case both printer and printer_greater point to the function object
+    printer = printer_greater
+    
+  # Either we have the first case (number is <= 10) or the second one. In both of them we create the variable printer
+  # and it points to a function, so we are sure that it exists and we can return it.
+  return printer
+```
