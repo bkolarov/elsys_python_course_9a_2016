@@ -32,3 +32,7 @@ def pow(number, power):
 Python започва да интерпретира ред по ред. Първия ред, първата дума - това е `def`. Преди нея, нека паметта ни е това празно кръгче (mad paint skills!!! Даже не е пейнт, защото съм на Линукс :Д):
 
 ![Empty memory](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/empty_memory.png?raw=true)
+
+
+След Python стигне `def`, обаче, се случва следното:
+![Created function](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/created_function_object.png?raw=true)
