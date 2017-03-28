@@ -1,4 +1,6 @@
-# Flashback
+# Ламбда изрази
+
+## Flashback
 
 Преди да четете този урок, по-добре прочетете [детайлите за функциите](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/function_details.md). 
 
@@ -27,4 +29,17 @@ def get_number():
 	
 result = multiply_by_two(get_number)
 print(result) # Output: 20
+```
+## lambda
+
+В Python освен с `def` има и друг начин за създаване на функция. Той е чрез ключовата дума `lambda`. 
+```python
+get_number = lambda: 10
+```
+
+`lambda: 10` ще създаде обект функция. Съответно `get_number` ще сочи към нея. Тялото на функцията, дефинирана с `lambda` се намира от дясната страна на двете точки `:`. Това, което се намира от дясната страна на двете точки ще се изпълни, ще се изчисли. Връщатана стойност на функцията, дефинирана с `lambda` е резултата от израза след двете точки. В нашия случай това е 10.
+
+```python
+get_number = lambda: 10
+print(get_number()) # Output 10
 ```
