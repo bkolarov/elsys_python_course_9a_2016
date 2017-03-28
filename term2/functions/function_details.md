@@ -36,3 +36,18 @@ Python започва да интерпретира ред по ред. Първ
 
 След Python стигне `def`, обаче, се случва следното:
 ![Created function](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/created_function_object.png?raw=true)
+
+
+Създаден е обект функция, и сме казали, че ще имаме променлива `pow`, която ще сочи към този обект. Сетете се как всичко в Python е обект и без проблем можем да имаме:
+```python
+def do_something():
+  pass
+  
+print (do_something) # output <function do_something at 0x7f74956d6f28>
+do_something = 3
+print (do_something) # output 3
+```
+
+Имаме функцията `do_something`, или по-точно имаме името `do_something`, което сочи към функция. После взимаме това име и му казваме, че вече сочи към цифрата 3.
+
+Както ние казваме на имената към какво да сочат, така и `def` казва на името след него (в първоначалния пример `pow`) да сочи към обекта функция.
