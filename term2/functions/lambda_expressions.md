@@ -43,3 +43,27 @@ get_number = lambda: 10
 get_number = lambda: 10
 print(get_number()) # Output 10
 ```
+
+```python
+get_number = lambda: 2 + 5
+print(get_number()) # Output 7
+```
+
+```python
+get_number = lambda: 2 + 5 + 10
+print(get_number()) # Output 17
+```
+
+```python
+get_number = lambda: 2**3
+result = get_number()
+print(result) # Output 8
+```
+
+```python
+get_number = lambda: 2*2
+result = get_number()
+print(result) # Output 4
+```
+
+
