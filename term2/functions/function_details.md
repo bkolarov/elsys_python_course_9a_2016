@@ -34,7 +34,7 @@ Python започва да интерпретира ред по ред. Първ
 ![Empty memory](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/empty_memory.png?raw=true)
 
 
-След Python стигне `def`, обаче, се случва следното:
+След като Python стигне `def`, обаче, се случва следното:
 ![Created function](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/created_function_object.png?raw=true)
 
 
