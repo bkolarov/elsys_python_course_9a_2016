@@ -1,4 +1,4 @@
-# lambda изрази
+# Flashback
 
 Преди да четете този урок, по-добре прочетете [детайлите за функциите](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/functions/function_details.md). 
 
@@ -8,5 +8,23 @@
 def do_something():
 	pass
   
+do_nothing = do_something # now we have two names for the same function
+do_something()
+do_nothing()
 
+do_something = 3
+do_nothing()
+do_something() # Error. This name is no longer pointing to a function
+```
+
+Щом функциите са обекти, можем да ги подаваме на други функции:
+```python
+def multiply_by_two(getter):
+	return 2 * getter()
+	
+def get_number():
+	return 10
+	
+result = multiply_by_two(get_number)
+print(result) # Output: 20
 ```
