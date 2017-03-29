@@ -115,3 +115,17 @@ eat_and_bring_food = lambda: visit_grandmother() # we are doing only one thing h
 food = eat_and_bring_food()
 print (food) # Output: 20
 ```
+
+`def` може да създава функции с параметри, които приемат аргументи.
+```python
+def power_by(number, pow):
+	return number**pow
+```
+
+`lambda` може да прави същото. Параметрите на `lambda` се записват от лявата страна на двете точки:
+```python
+power_by = lambda number, pow: number**pow
+result = power_by(10, 2)
+print(result) # Output: 100
+```
+
