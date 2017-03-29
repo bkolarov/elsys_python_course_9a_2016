@@ -116,6 +116,7 @@ food = eat_and_bring_food()
 print (food) # Output: 20
 ```
 
+
 `def` може да създава функции с параметри, които приемат аргументи.
 ```python
 def power_by(number, pow):
