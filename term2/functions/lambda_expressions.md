@@ -247,4 +247,5 @@ print_filtered(l, my_filter)
 ```
 И отново работи :)
 ___
+
 ![Маймуна в рокля](https://3.bp.blogspot.com/-gg4ULSteGvM/TfZjSuoR_kI/AAAAAAAAAkg/GN2soIOSKP0/s1600/Crystal-monkey-photo-hangover2-premiere2.jpg)
