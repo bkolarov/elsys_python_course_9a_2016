@@ -115,18 +115,95 @@ eat_and_bring_food = lambda: visit_grandmother() # we are doing only one thing h
 food = eat_and_bring_food()
 print (food) # Output: 20
 ```
-
+<br>
 
 `def` може да създава функции с параметри, които приемат аргументи.
 ```python
-def power_by(number, pow):
-	return number**pow
+def power_by(number, power):
+	return number**power
 ```
 
 `lambda` може да прави същото. Параметрите на `lambda` се записват от лявата страна на двете точки:
 ```python
-power_by = lambda number, pow: number**pow
+power_by = lambda number, power: number**power
 result = power_by(10, 2)
 print(result) # Output: 100
 ```
 
+___
+### Кога използваме `lambda`?
+
+Да кажем, че имаме функция, която итерира по `list` и принтира стойностите. Функцията, обаче, принтира елементите, които отговарят на определено условие. Да кажем, че условието е да принтира всички елементи, които са четни числа.
+
+```python
+def print_filtered(l):
+	for i in l:
+		if i % 2 == 0:
+			print(i)
+```
+
+Сега обаче променяме условието. Искаме да принтираме само НЕчетните. Трябва да редактираме функцията:
+```python
+def print_filtered(l):
+	for i in l:
+		if i % 2 != 0: # difference
+			print(i)
+```
+
+За да не се налагаме да променяме функцията всеки път, когато искаме да променим условието ще кажем на `def` да създава функция, която приема два аргумента, а не един. Вторият аргумент ще е обект към функция.
+
+```python
+def print_filtered(l, element_filter): # we are not using the second parameter here
+	for i in l:
+		if i % 2 != 0:
+			print(i)
+```
+
+Функцията, към която ще сочи вторият аргумент, трябва да приема 1 аргумент, който ще е текущия елемент от листа. Тази функция ще трябва да връща `True`, ако този елемент трябва да бъде принтиран и `False` ако не трябва.
+
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # difference
+			print(i)
+```
+
+Сега дали елементът ще бъде принтиран зависи от имплементацията на функцията, която подаваме като втори аргумент. Нека отново да искаме да принтираме само четните числа:
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+            
+def is_even(number):
+    return number % 2 == 0
+    
+l = [i for i in range(10)] # Create the list of numbers
+print_filtered(l, is_even) # Pass the list and the name of the function
+```
+Сега кои числа ще се принтират зависят изцяло от тялото на функцията, която подаваме на `print_filtered`. Ако променим `is_even(number)` да връща False ако е четно, резултатът ще е друг. Пробвайте.
+<br>
+С цел да се съкрати кода и да не се пише отделно цяла функция, която да казва дали едно число е четно или не, искаме да можем да дефинираме тази функция директно при подаването на аргумент. Тоест нещо такова:
+
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+    
+l = [i for i in range(10)] # Create the list of numbers
+print_filtered(l, def is_even(number): return number % 2 == 0) # Error!!!
+```
+
+Можем да имаме `def` почти навсякъде, но **не** навсякъде. Да подаваме `def` като аргумент не можем. `lambda` обаче можем.
+
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+    
+l = [i for i in range(10)] # Create the list of numbers
+print_filtered(l, lambda number: number % 2 == 0) # works like a charm
+```
+При извикването на `print_filtered(l, lambda number: number % 2 == 0)` `lambda` ще се изпълни, ще върне обект функция и този обект ще бъде подаден на `print_filtered`. 
