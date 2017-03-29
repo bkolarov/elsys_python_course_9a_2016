@@ -206,4 +206,45 @@ def print_filtered(l, element_filter):
 l = [i for i in range(10)] # Create the list of numbers
 print_filtered(l, lambda number: number % 2 == 0) # works like a charm
 ```
-При извикването на `print_filtered(l, lambda number: number % 2 == 0)` `lambda` ще се изпълни, ще върне обект функция и този обект ще бъде подаден на `print_filtered`. 
+При извикването на `print_filtered(l, lambda number: number % 2 == 0)` `lambda` ще се изпълни, ще върне обект функция и този обект ще бъде подаден на `print_filtered`. Еквивалент:
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+    
+l = [i for i in range(10)] # Create the list of numbers
+my_filter = lambda number: number % 2 == 0
+print_filtered(l, my_filter)
+```
+
+Какво ще стане ако имаме различни типове в листа?
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+    
+l = [2, 'str', 5, 'sla', 1.3, 6, 10, 20, 3, 1]
+my_filter = lambda number: number % 2 == 0
+print_filtered(l, my_filter)
+```
+
+Ще има БУМ. Не е много нормално да имаме стринг и да прилагаме оператора `%` на него. В горните примери имаше следния `lambda` израз:
+```python
+get_number = lambda: 2 + 5 + 10
+```
+Реално тук се прави едно нещо. Събира се. Извършва се математическа операция. Това **може** да се прави. Същото може да се прави и с булевите операции. Затова ще модифицираме малко нашия `lambda` израз, за да може да проверява и дали елементът от масива е `int`.
+```python
+def print_filtered(l, element_filter):
+	for i in l:
+		if element_filter(i): # Use the passed function to determine whether we should print the number or not
+			print(i)
+    
+l = [2, 'str', 5, 'sla', 1.3, 6, 10, 20, 3, 1]
+my_filter = (lambda number: (type(number) is int) and number % 2 == 0) # type(number) returns the type of number. type(3) returns int. type(3) is int = True, because int is int is True.
+print_filtered(l, my_filter)
+```
+И отново работи :)
+___
+![Маймуна в рокля](https://3.bp.blogspot.com/-gg4ULSteGvM/TfZjSuoR_kI/AAAAAAAAAkg/GN2soIOSKP0/s1600/Crystal-monkey-photo-hangover2-premiere2.jpg)
