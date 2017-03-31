@@ -94,7 +94,7 @@ for rows in read_rows('cars.csv'):
 ```
 
 ### 7. Направете нов цикъл, който итерира по read_rows. Принтирайте само този лист на екрана, чийто елемент за колона 'Origin' има 'Europe'. 
-```
+```python
 def read_file(name):
 	f = open('cars.csv', 'r')
 
