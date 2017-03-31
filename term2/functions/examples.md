@@ -167,7 +167,7 @@ def read_rows(name):
 		rows = line.split(';')
 		yield rows 
 
-def filter_lines_by_row(name, row_filter):
+def filter_lines_by_row(name, row_filter): # difference
 	for rows in read_rows(name):
 		if row_filter(rows[8]): # difference
 			yield rows 
@@ -226,7 +226,7 @@ def read_rows(name):
 
 def filter_lines_by_row(name, row_filter):
 	for rows in read_rows(name):
-		if row_filter(rows[8]): # difference
+		if row_filter(rows[8]):
 			yield rows 
 
 '''
