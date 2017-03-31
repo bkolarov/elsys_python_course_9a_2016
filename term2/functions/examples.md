@@ -65,7 +65,7 @@ def read_file(name):
 	f = open('cars.csv', 'r')
 
 	for line in f:
-		yield line # difference
+		yield line
 
 	f.close()
 
