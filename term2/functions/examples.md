@@ -1,3 +1,7 @@
+## Resources
+[Download cars.csv](https://my.pcloud.com/publink/show?code=XZ0LHIZIKHSjyxusXB5dGfM0o5S1pmICBeV)
+
+*Бележка: Отворете файла `cars.csv` с текстов редактор (Notepad, Sublime, Gedit и пр) и проверете как са разделени колоните. Може да не е с `;`, а с някой друг символ.*
 
 ## Задачи
 1. Отворете файла 'cars.csv' и принтирайте всички редове на екрана.
@@ -66,7 +70,7 @@ def read_file(name):
 	f.close()
 
 for line in read_file('cars.csv'):
-	rows = line.split(';')
+	rows = line.split(';') # Check what symbol is used for row separator. It may not be ';' but something else.
 	print(rows)
 ```
 
