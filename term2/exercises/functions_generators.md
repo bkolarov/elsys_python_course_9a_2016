@@ -14,24 +14,25 @@
 1. Дефинирайте генератор на име `read_lines`, който приема за аргумент име на файл. Генераторът трябва да прочита всички редове от файла, чието име се подава, и да yield-ва всеки един от тях.
 1. Дефинирайте втори генератор 'read_splitted'. Той трябва да чете целите редове от файла, използвайки първия генератор и да yield-ва list от отделните колони в реда. Генераторът да приема за първи аргумент име на файла и символа, с който са разделени колоните във файла. Редът се разделя с подадения на генератора символ.
 1. Дефинирайте глобално за модула dictionary. Ключовете в това dictionary ще бъдат типовете данни. Стойностите съответстващи на ключовете да са `lambda` изрази. `lambda` изразът трябва да приема един аргумент, като спроед ключа ще превръща стойността на този аргумент от стринг в съответния тип. Например за DOUBLE ще трябва да превръща стойността във float.
-  ```python
-  convertors = {'DOUBLE': lambda value: float(value)}
-  float_convertor = convertors['DOUBLE']
-  converted_float = float_convertor('3.0')
-  print(converted_float) # Output: 3.0 which is float.
-  ```
-  ```python
-  convertors = {'DOUBLE': lambda value: float(value), 'INT': lambda value: int(value)}
-  float_convertor = convertors['DOUBLE']
-  converted_float = float_convertor('3.0')
-  print(converted_float) # Output: 3.0 which is float.
+   ```python
+   convertors = {'DOUBLE': lambda value: float(value)}
+   float_convertor = convertors['DOUBLE']
+   converted_float = float_convertor('3.0')
+   print(converted_float) # Output: 3.0 which is float.
+   ```
+   ```python
+   convertors = {'DOUBLE': lambda value: float(value), 'INT': lambda value: int(value)}
+   float_convertor = convertors['DOUBLE']
+   converted_float = float_convertor('3.0')
+   print(converted_float) # Output: 3.0 which is float.
 
-  int_convertor = convertors['INT']
-  converted_int = int_convertor('15')
-  print(converted_int) # Output: 15 which is int
-  ```
-  Направете такова dictionary за всички типове, като за STRING и CAT ламбдите си връщат същия STRING, за INT да връщат int, а за DOUBLE да връщат float.<br>
-4. Дефинирайте трети генератор на име `convert_rows`, който използва `read_splitted`, за да прочете файла. Този генератор да приема за аргумент името на файла и да го ползва за `read_splitted`. За всеки върнат list от `read_splitted` трябва да направите нов list със конвертирани стойности, използвайки по-горе дефинираното dictionary. За да разберете кой елемент от кой тип е, вижте реда в csv файла, в който са записани типовете и вижте индексите. 
+   int_convertor = convertors['INT']
+   converted_int = int_convertor('15')
+   print(converted_int) # Output: 15 which is int
+   ```
+   Направете такова dictionary за всички типове, като за STRING и CAT ламбдите си връщат същия STRING, за INT да връщат int, а за DOUBLE да връщат float.
+  
+1. Дефинирайте трети генератор на име `convert_rows`, който използва `read_splitted`, за да прочете файла. Този генератор да приема за аргумент името на файла и да го ползва за `read_splitted`. За всеки върнат list от `read_splitted` трябва да направите нов list със конвертирани стойности, използвайки по-горе дефинираното dictionary. За да разберете кой елемент от кой тип е, вижте реда в csv файла, в който са записани типовете и вижте индексите. 
 
   Пример:
   index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
