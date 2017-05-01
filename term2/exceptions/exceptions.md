@@ -89,6 +89,61 @@ print("The reciprocal of",entry,"is",r)
 ### Обработка на специфични изключения
 В примера по-горе не сме определили кои изключения(грешки) точно ще обработваме с `except` клаузата. Това не е добра практика. Обикновено знаем какви изключения искаме да обработваме и искаме да се занимаваме само с тях. Възникването на неочаквани изключения би било знак за бъг в програмата ни. За да забележим по-бързо проблема, тази грешка трябва да остане необработена и да развали нормалното изпълнение на програмата. С други думи - не сме очаквали нещо да се случи, ще е хубаво ако програмата ни крашне, че да имаме защо да кажем набор от обидни думи за нечии роднини и веднага да се заемем с проблема.
 
+Как става обработката на изключения? Няма да ви кажа! Добре де.. 
+Всяко възникнало изключение е създаден обект. Съответно този обект е описан със съответния клас. `except` ключовата дума може да приеме списък от изключенията, които трябва да се обработят в блока.
+
+```python
+def divide_by(number, divisor):
+  try:
+    return number / divisor
+  except ZeroDivisionError:
+    # handle division by zero exception
+    pass
+
+```
+
+```python
+def divide_string_nums(number, divisor):
+  try:
+    return int(number) / int(divisor)
+  except (ZeroDivisionError, ValueError):
+    # handle the two errors above
+    pass
+```
+
+Ако е възможно да възникнат повече от едно изключения и трябва да се обработят поотделно.. Ами тогава плачем. Шегувам се. Има решение и за този случай:
+```python
+def divide_string_nums(number, divisor):
+  try:
+    return int(number) / int(divisor)
+  except ValueError:
+    # handle ValueError
+    pass
+  except ZeroDivisionError:
+    # handle ZeroDivisionError
+    pass
+```
+
+Тази комбинация също е възможна:
+```python
+try:
+   # do something
+   pass
+
+except ValueError:
+   # handle ValueError exception
+   pass
+
+except (TypeError, ZeroDivisionError):
+   # handle multiple exceptions
+   # TypeError and ZeroDivisionError
+   pass
+
+except:
+   # handle all other exceptions
+   pass
+```
+
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
