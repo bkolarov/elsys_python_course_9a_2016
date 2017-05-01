@@ -45,9 +45,24 @@ Traceback (most recent call last):
  File "<interactive input>", line 1, in <module>
 ZeroDivisionError: division by zero
 ```
+
 виждаме на кой ред е възникнала грешката - `File "<interactive input>", line 1, in <module>` и каква точно е тя - `ZeroDivisionError: division by zero`. 
 
 В Python има набор от вградени грешки (exceptions), които съответстват на определени проблеми в програмата. [Тук](https://docs.python.org/3/library/exceptions.html) можете да видите всичките, заедно с техните описания.
+
+## Обработка на изключения
+
+![](https://cdn.programiz.com/sites/tutorial2program/files/python-exception-handling_1.jpg)
+Когато възникне грешка и тя не бъде обработена, текущият процес спира и предава грешката на извикващият процес. Ако и той не се погрижи, предава нагоре. Така, докато не се стигне до главния процес и ако грешката не бъде обработена никъде, програмата приключва работата си извънредно.
+
+В Python грешките се обработват с помощта на ключовата дума `try`. След `try` трябва да има блок, в който да се изпълни критичния код (кодът, от който е възможно да се възпроизведе грешка). След което, кодът който обработва грешката, ако тя настъпи, трябва да се намира в `except` блок.
+
+```python
+try:
+    f = open('random_file', 'r')
+except:
+    print('Sorry, but something went wrong with your file. Is if missing?')
+```
 
 ___
 Полезни и използвани връзки:
