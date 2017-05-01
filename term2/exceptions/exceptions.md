@@ -65,6 +65,24 @@ except:
     print('Sorry, but something went wrong with your file. Is if missing?')
 ```
 
+Примерът по-долу добре показва как при възникване на грешка, при обработка програмата продължава:
+```python
+import sys
+
+randomList = ['a', 0, 2]
+
+for entry in randomList:
+    try:
+        print("The entry is", entry)
+        r = 1/int(entry)
+        break
+    except:
+        print("Oops!",sys.exc_info()[0],"occured.")
+        print("Next entry.")
+        print()
+print("The reciprocal of",entry,"is",r)
+```
+
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
