@@ -59,8 +59,9 @@ ZeroDivisionError: division by zero
 
 ```python
 try:
-    f = open('random_file', 'r')
+    f = open('random_file', 'r') # We try to open the file.
 except:
+    # The file is probably missing. An Error occured and this block is called.
     print('Sorry, but something went wrong with your file. Is if missing?')
 ```
 
