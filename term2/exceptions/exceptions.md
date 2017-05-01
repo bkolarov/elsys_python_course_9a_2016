@@ -48,3 +48,8 @@ ZeroDivisionError: division by zero
 виждаме на кой ред е възникнала грешката - `File "<interactive input>", line 1, in <module>` и каква точно е тя - `ZeroDivisionError: division by zero`. 
 
 В Python има набор от вградени грешки (exceptions), които съответстват на определени проблеми в програмата. [Тук](https://docs.python.org/3/library/exceptions.html) можете да видите всичките, заедно с техните описания.
+
+___
+Полезни и използвани връзки:
+* https://www.programiz.com/python-programming/exceptions
+* https://www.programiz.com/python-programming/exception-handling
