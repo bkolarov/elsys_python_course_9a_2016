@@ -167,7 +167,7 @@ except FileNotFoundError:
 
 В случай, че възникне първата грешка - `ValueError` - тогава тя ще бъде обработена във вътрешния `except` блок и външният дори няма да разбере, че нещо не е било наред. Ако се окаже, че файлът не съществува, тогава ще имаме `FileNotFoundError`. Python ще види, че тази грешка не може да бъде обработена във вътрешния `except` блок, затова разширява пространството, в което гледа и ще стигне до външния `except` блок. Идеята е, че тръгваме от вътре навън. По-долу има илюстрация за яснота. Прилича на поничка.
 
-![](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/exceptions/resources/exceptions_dount1.jpg?raw=true)
+![](./resources/exceptions_donut1.jpg)
 
 Какво ще се случи, ако кодът в `try` блока е изнесен във функция?
 
@@ -212,7 +212,7 @@ except FileNotFoundError: # This still will get called, because no one else hand
 
 В този случай при възникване на ValueError във функцията, тя ще обработи случая сама. Блокът, който обработва `ValueError` извън функцията, никога няма да бъде изпълнен.
 
-![](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/exceptions/resources/exceptions_donut2.jpg?raw=true)
+![](./resources/exceptions_donut2.jpg)
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
