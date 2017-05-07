@@ -216,7 +216,40 @@ except FileNotFoundError: # This still will get called, because no one else hand
 
 <img src="./resources/exceptions_donut2.jpg" width="700"/>
 
+## Произвеждане на грешка
+До тук работихме с изключения, които сами си идват. От някъде идваше грешката за делене на нула. От някъде идваше грешката, че не съществува даден файл. В много случаи ние ще бъдем хората, които ще казваме "има грешка, направи нещо по въпроса". Това се прави с ключовата дума `raise`. В един момент една от всичките операции в кода вдига ръка (raising hands) и крещи "ГРЕШКА!!!". Ето как се използва това:
+
+```python
+class Person:
+  def __init__(self, name):
+    if '_' in name:
+      raise NameError # Passing class NameError to raise
+    self.name = name
+    
+p1 = Person('Multicet')
+p2 = Person('Stamat_')
+```
+
+Ключовата дума `raise` очаква да има клас, който наследява класа `Exception` или обект, принадлежащ на този клас. Вградените в Python класове за грешки наследяват `Exception`, разбира се.
+
+```python
+class Person:
+  def __init__(self, name):
+    if '_' in name:
+      error = NameError()
+      raise error # Passing an instance of NmaeError class to raise
+    self.name = name
+
+p1 = Person('Multicet')
+p2 = Person('Stamat_')
+```
+
+## Изключения, дефинирани от програмиста
+Разработваме система за банки. В нея работим с клиенти. Да кажем, че един клиент не може да е на възраст по-малка от 18 години. Ако някой се опита да създаде клиент, който е по-малък от 18 години, е добре да възпроизведем грешка. 
+
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
 * https://www.programiz.com/python-programming/exception-handling
+* https://julien.danjou.info/blog/2016/python-exceptions-guide
+* https://docs.python.org/3/tutorial/errors.html#
