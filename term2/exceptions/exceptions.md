@@ -244,6 +244,36 @@ p1 = Person('Multicet')
 p2 = Person('Stamat_')
 ```
 
+В посочните примери горе, имаме клас, който описва човек. Примерът е прост, затова човекът има само име. Да кажем, че единственото ограничение е, че човек не може да има долна черта в името си. Когато някой се опита да създаде обект от тип Person и подаде невалидно име, освен че казваме, че има грешка, е добре и да дадем повече информация за нея. За горния пример грешката би изглеждала така:
+
+```python
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 5, in __init__
+NameError
+```
+
+За да дадем повече информация, можем просто да създадем NameError обект и да подадем на неговия __init__ метод `string`, в който описваме какво точно не е наред.
+
+```python
+class Person:
+  def __init__(self, name):
+    if '_' in name:
+      raise NameError('I hardly believe that there is a person with an underscore in his name.') 
+    self.name = name
+    
+p1 = Person('Multicet')
+p2 = Person('Stamat_')
+```
+
+```python
+>>> p2 = Person('Stamat_')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 4, in __init__
+NameError: I hardly believe that there is a person with an underscore in his name.
+```
+
 ## Изключения, дефинирани от програмиста
 Разработваме система за банки. В нея работим с клиенти. Да кажем, че един клиент не може да е на възраст по-малка от 18 години. Ако някой се опита да създаде клиент, който е по-малък от 18 години, е добре да възпроизведем грешка. 
 
