@@ -215,6 +215,7 @@ except FileNotFoundError: # This still will get called, because no one else hand
 В този случай при възникване на ValueError във функцията, тя ще обработи случая сама. Блокът, който обработва `ValueError` извън функцията, никога няма да бъде изпълнен.
 
 <img src="./resources/exceptions_donut2.jpg" width="700"/>
+
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
