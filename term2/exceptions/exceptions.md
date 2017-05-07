@@ -54,7 +54,7 @@ ZeroDivisionError: division by zero
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/python-exception-handling_1.jpg)
 
-Когато възникне грешка и тя не бъде обработена, текущият процес спира и предава грешката на извикващият процес. Ако и той не се погрижи, предава нагоре. Така, докато не се стигне до главния процес и ако грешката не бъде обработена никъде, програмата приключва работата си извънредно.
+Когато възникне грешка и тя не бъде обработена, текущият процес спира и предава грешката на извикващия процес. Ако и той не се погрижи, грешката се предава нагоре. Така, докато не се стигне до главния процес и ако грешката не бъде обработена никъде, програмата приключва работата си извънредно.
 
 ### Обработка на изключенията в Python
 
@@ -64,8 +64,8 @@ ZeroDivisionError: division by zero
 try:
     f = open('random_file', 'r') # We try to open the file.
 except:
-    # The file is probably missing. An Error occured and this block is called.
-    print('Sorry, but something went wrong with your file. Is if missing?')
+    # The file is probably missing. An Error occured and this block will be executed.
+    print('Sorry, but something went wrong with your file. Is it missing?')
 ```
 
 Примерът по-долу добре показва как при възникване на грешка, при обработка програмата продължава. Пробвайте го и вижте резултата. Разгледайте какво и кога се случва:
@@ -143,6 +143,33 @@ except:
    # handle all other exceptions
    pass
 ```
+
+### Вложена try-except структура
+
+Ето един пример за това как при възникване на грешка, тя се предава.
+
+```python
+try:
+
+    try:
+        f = open('numbers', 'r')
+        number = int(f.readline())
+    except ValueError:
+        print('handling the value error')
+        
+except FileNotFoundError:
+    print('handling FileNotFoundError)    
+```
+
+В случая имаме вложена try-except структура. Във вътрешния `try` блок отваряме файл, четем от него и се опитваме прочетения `string` да превърнем в число. Да кажем, че възможните грешки, които могат да възникнат са две:
+1. Прочетеният `string` може да не може да се превърне в число. Ако във файла е записано 'abc' и се опитаме да го превърнем в число, ще имаме грешка. 
+1. Файлът може да не съществува
+
+В случай, че възникне първата грешка - `ValueError` - тогава тя ще бъде обработена във вътрешния `except` блок и външният дори няма да разбере, че нещо не е било наред. Ако се окаже, че файлът не съществува, тогава ще имаме `FileNotFoundError`. Python ще види, че тази грешка не може да бъде обработена във вътрешния `except` блок, затова разширява пространството, в което гледа и ще стигне до външния `except` блок. Идеята е, че тръгваме от вътре навън. По-долу има илюстрация за яснота. Прилича на поничка.
+
+![](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/exceptions/resources/exceptions_dount1.jpg?raw=true)
+
+
 
 ___
 Полезни и използвани връзки:
