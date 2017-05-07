@@ -169,8 +169,50 @@ except FileNotFoundError:
 
 ![](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/exceptions/resources/exceptions_dount1.jpg?raw=true)
 
+Какво ще се случи, ако кодът в `try` блока е изнесен във функция?
 
+```python
+def convert_number_from_file():
+  f = open('numbers', 'r')
+  number = int(f.readline())
 
+try:
+
+    try:
+        convert_number_from_file()
+    except ValueError:
+        print('handling the value error')
+        
+except FileNotFoundError:
+    print('handling FileNotFoundError)    
+```
+
+Разлика в изпълнението няма да има. Ако възникне грешка във функцията, тя ще бъде предадена до мястото, където функцията е извикана (в случая `try` блока). Ако не бъде обработена във вътрешния `try`, ще отиде към външния и тн. 
+
+Да кажем, обаче, че правим тази малка промяна:
+
+```python
+def convert_number_from_file():
+  try:
+    f = open('numbers', 'r')
+    number = int(f.readline())
+  except ValueError: # If ValueError occurs, it will be handled here. The caller won't even know about that.
+    print('handling the value error')
+
+try:
+
+    try:
+        convert_number_from_file()
+    except ValueError: # This won't be called, because the function handled this exception by itself.
+        print('handling the value error')
+        
+except FileNotFoundError: # This still will get called, because no one else handles this kind of error inside the outer try block.
+    print('handling FileNotFoundError)    
+```
+
+В този случай при възникване на ValueError във функцията, тя ще обработи случая сама. Блокът, който обработва `ValueError` извън функцията, никога няма да бъде изпълнен.
+
+![](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/exceptions/resources/exceptions_donut2.jpg?raw=true)
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
