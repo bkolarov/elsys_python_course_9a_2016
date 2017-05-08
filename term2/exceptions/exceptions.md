@@ -420,6 +420,112 @@ Traceback (most recent call last):
 __main__.AgeError: ('wrong age', 9)
 ```
 
+### Използване на обекта на изключението
+След като за всяко изключение има създаден обект, можем ли да работим с него? Може. Ето как да се сдобием с него:
+
+```python
+class AgeError(Exception):
+    pass
+    
+class Client:
+    def __init__(self, name, age):
+        if '_' in name:
+            raise NameError('Name must not have _ in it!')
+        
+        if age < 18:
+            raise AgeError('Person must be >= 18 years old!')
+            
+        self.name = name
+        self.age = age
+```
+
+```python
+try:
+    client1 = Client('Multicet', 9)
+except AgeError as err:
+    print('an exception has been thrown: ' + str(err))
+
+Output: an exception has been thrown: Person must be >= 18 years old!
+```
+
+След като сме казали на `except` кои грешки обработваме в неговия блок, с помощта на ключовата дума `as` обектът на изключението ще бъде достъпен чрез името, което сме дали след нея. Защо това е важно? Да кажем, че освен просто съобщение, което да дава нашата грешка, искаме да запазим в нея повече информация за проблемът, който е възникнал.
+
+```python
+class AgeError(Exception):
+    def __init__(self, msg, age):
+        super().__init__(msg)
+        self.age = age
+```
+
+Решаваме, че искаме да пазим в `AgeError` и годините, които сме подали и са били неправилни. Проблемът в крайна сметка идва от тях, затова нека да ги предоставим на изключението, така че да са достъпни при обработката. Обърнете внимание, че вече предефинираме `__init__` метода. Извикваме `__init__` метода на класа родител като подаваме само съобщението, а годините ги запазваме в обекта. Така `BaseException` се инициализира само със съобщението и всичко е както преди:
+
+```python
+>>> raise AgeError('wrong age', 9)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+__main__.AgeError: wrong age
+
+>>> err = AgeError('wrong age', 9)
+>>> raise err
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+__main__.AgeError: wrong age
+>>> print(err.age)
+9
+```
+
+Да използваме новия `AgeError` в `Client`.
+
+```python
+class AgeError(Exception):
+    def __init__(self, msg, age):
+        super().__init__(msg)
+        self.age = age
+
+class Client:
+    def __init__(self, name, age):
+        if '_' in name:
+            raise NameError('Name must not have _ in it!')
+        
+        if age < 18:
+            raise AgeError('Person must be >= 18 years old!', age) # difference
+            
+        self.name = name
+        self.age = age
+        
+try:
+	client1 = Client('Stamat', 0)
+except AgeError as err:
+	print('something went wrong: ' + str(err))
+    print('Your age is ' + err.age) 
+```
+```
+Output: 
+something went wrong: Person must be >= 18 years old!
+Your age is 0
+```
+
+По същия начин можем да работим с обекта на грешката, ако обработваме повече от едно изключения в един `except` блок:
+```python
+try:
+	client1 = Client('Stamat_', 18)
+except (AgeError, NameError) as err:
+	print('something went wrong: ' + str(err))
+```
+```
+Output:
+something went wrong: Name must not have _ in it!
+```
+```python
+try:
+	client1 = Client('Stamat', 5)
+except (AgeError, NameError) as err:
+	print('something went wrong: ' + str(err))
+```
+```
+Output:
+something went wrong: Person must be >= 18 years old!
+```
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
