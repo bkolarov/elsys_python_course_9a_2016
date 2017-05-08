@@ -612,7 +612,7 @@ Output:
 ```
 
 ## Sorry for the long post. Here's a potato
-[](https://seanhamptoncole.files.wordpress.com/2014/09/wpid-photo-20140907084510.jpg)
+![](https://seanhamptoncole.files.wordpress.com/2014/09/wpid-photo-20140907084510.jpg)
 
 ___
 Полезни и използвани връзки:
