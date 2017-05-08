@@ -212,12 +212,12 @@ except FileNotFoundError: # This still will get called, because no one else hand
     print('handling FileNotFoundError)    
 ```
 
-В този случай при възникване на ValueError във функцията, тя ще обработи случая сама. Блокът, който обработва `ValueError` извън функцията, никога няма да бъде изпълнен.
+В този случай, при възникване на ValueError във функцията, тя ще обработи изключението сама. Блокът, който обработва `ValueError` извън функцията, никога няма да бъде изпълнен.
 
 <img src="./resources/exceptions_donut2.jpg" width="700"/>
 
 ## Произвеждане на грешка
-До тук работихме с изключения, които сами си идват. От някъде идваше грешката за делене на нула. От някъде идваше грешката, че не съществува даден файл. В много случаи ние ще бъдем хората, които ще казваме "има грешка, направи нещо по въпроса". Това се прави с ключовата дума `raise`. В един момент една от всичките операции в кода вдига ръка (raising hands) и крещи "ГРЕШКА!!!". Ето как се използва това:
+До тук работихме с изключения, които сами си идват. От някъде идваше грешката за делене на нула. От някъде идваше грешката, че не съществува даден файл. В много случаи ние ще бъдем хората, които ще казваме "има грешка, направи нещо по въпроса". Това се прави с ключовата дума `raise`. В един момент една от всичките операции в кода вдига ръка (raising hands) и крещи "ГРЕШКА!!!". Ето как се използва:
 
 ```python
 class Person:
@@ -230,7 +230,7 @@ p1 = Person('Multicet')
 p2 = Person('Stamat_')
 ```
 
-Ключовата дума `raise` очаква да има клас, който наследява класа `Exception` или обект, принадлежащ на този клас. Вградените в Python класове за грешки наследяват `Exception`, разбира се.
+Ключовата дума `raise` очаква да има клас, който наследява класа `Exception` или обект, принадлежащ на този клас. Вградените в Python класове за грешки (какъвто е `NameError`) наследяват `Exception`, разбира се.
 
 ```python
 class Person:
@@ -259,7 +259,7 @@ NameError
 class Person:
   def __init__(self, name):
     if '_' in name:
-      raise NameError('I hardly believe that there is a person with an underscore in his name.') 
+      raise NameError('Person must not have a name that contains an underscore.') 
     self.name = name
     
 p1 = Person('Multicet')
@@ -271,12 +271,13 @@ p2 = Person('Stamat_')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "<stdin>", line 4, in __init__
-NameError: I hardly believe that there is a person with an underscore in his name.
+NameError: Person must not have a name that contains an underscore.
 ```
 
 ## Изключения, дефинирани от програмиста
-Разработваме система за банкиране. В нея работим с клиенти. Да кажем, че един клиент не може да е на възраст по-малка от 18 години. Ако някой се опита да създаде клиент, който е по-малък от 18 години, е добре да възпроизведем грешка. Споменато е в началото, че в Python има набор от дефинирани грешки. Те разбира се са ограничен брой и в много случаи ще трябва да създадем наши. <br>
-За да бъде един клас третиран като грешка, той трябва да наследява вградения клас `Exception`. Всъщност трябва да наследява `BaseException`, но конвенцията е, да се наследява `Exception`, който по своему е наследник на `BaseException`. Всички вградени класове за грешки в Python, освен GeneratorExit, SystemExit и KeyboardInterrupt, наследяват `Exception`, така че е добре вашите също да го правят.
+
+Разработваме система за банкиране. В нея работим с клиенти. Да кажем, че един клиент не може да е на възраст по-малка от 18 години. Ако някой се опита да създаде клиент, който е по-малък от 18 години, е добре да възпроизведем грешка. Споменато е в началото, че в Python има набор от вградени класове за грешки. Те, разбира се, са ограничен брой и в много случаи ще трябва да създадем наши. <br>
+За да бъде един клас третиран като грешка, той трябва да наследява вградения клас `Exception`. Всъщност трябва да наследява `BaseException`, но конвенцията е, да се наследява `Exception`, който по своему е наследник на `BaseException`. Всички вградени класове за грешки в Python, освен `GeneratorExit`, `SystemExit` и `KeyboardInterrupt`, наследяват `Exception`, така че е добре вашите също да го правят.
 
 ```python
 class AgeError(Exception):
@@ -296,7 +297,80 @@ class Client:
 
 Класът ни Client описва клиент с две характеристики - име и възраст. При неправилно име използваме вградения `exception` клас `NameError`. При неправилна възраст обаче използваме нашия дефиниран `exception` - `AgeError`. Забележете, че конвенцията е имената на тези класове да завършват с `Error`.
 
+<br>
+Нека погледнем класа Exception от близо. `__init__` методът на `BaseException` (който е директно наследен от Exception) всъщност има следната сигнатура - `__init__(*args)`. Какво значи тази звезда преди `args`? Значи, че на метода можем да подадем 0 или n на брой аргумента. Бърз пример:
 
+```python
+def func(*args):
+    print('arguments: ' + str(args))
+```
+```python
+func()
+arguments: ()
+
+>>> func(3)
+arguments: (3,)
+
+>>> func(3,'a')
+arguments: (3, 'a')
+```
+Реално `*args` е `tuple` от аргументите, които сме подали. Ако не сме подали нищо, tuple-ът е празен. 
+
+Връщаме се отново на нашия `exception` клас `AgeError`.
+```python
+class AgeError(Exception):
+    pass
+```
+В него не се предефинира нито един метод. `Exception` класа, от който наследяваме, също не го прави. Това значи, че при създаването на `AgeError` обект, директно се извиква `__init__` методът на `BaseException`. Аргументите, които подадем при създаването на обекта се запазват в него. 
+
+```python
+class AgeError(Exception):
+    pass
+    
+class Client:
+    def __init__(self, name, age):
+        if '_' in name:
+            raise NameError('Name must not have _ in it!')
+        
+        if age < 18:
+            raise AgeError('Person must be >= 18 years old!')
+            
+        self.name = name
+        self.age = age
+```
+Да пробваме да създадем клиент с неправилна възраст:
+```python
+client1 = Client('Stamat', 9)
+```
+```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 6, in __init__
+__main__.AgeError: Client's age must be >= 18 years old!
+```
+На последния ред виждаме съобщението, което сме подали при създаването на изключението. Съобщението след `__main__.AgeError:` стига до нас благодарение на имплементацията на метода `__str__` в `BaseException`. 
+Ако се сещате, когато искаме да превърнем даден обект в `string` ние използваме вградената функция `str` и й подаваме този обект. Върнатият обект от `str` е резултатът от метода `__str__` на обекта, който сме подали.
+```python
+class Client:
+    def __init__(self, name, age):
+        if '_' in name:
+            raise NameError('Name must not have _ in it!')
+        
+        if age < 18:
+            raise AgeError('Person must be >= 18 years old!')
+            
+        self.name = name
+        self.age = age
+        
+    def __str__(self):
+        return '{} {}'.format(self.name, self.age)
+```
+```
+>>> client = Client('Multicet', 56)
+>>> str_client = str(client)
+>>> print(str_client)
+Multicet 56
+```
 
 ___
 Полезни и използвани връзки:
