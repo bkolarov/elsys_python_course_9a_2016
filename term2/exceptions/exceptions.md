@@ -611,11 +611,26 @@ Output:
 4. This gets called no matter what!
 ```
 
+Един по-реален пример:
+```python
+f = None
+try:
+	f = open('numbers.txt', 'r')
+	number = int(f.readline())
+except ValueError:
+	print('cannot convert read value to int')
+except FileNotFoundException as err:
+	print(err)
+finally:
+	if f != None:
+		f.close()
+```
+
 ## Sorry for the long post. Here's a potato
 ![](https://seanhamptoncole.files.wordpress.com/2014/09/wpid-photo-20140907084510.jpg)
 
 ___
-Полезни и използвани връзки:
+## Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
 * https://www.programiz.com/python-programming/exception-handling
 * https://julien.danjou.info/blog/2016/python-exceptions-guide
