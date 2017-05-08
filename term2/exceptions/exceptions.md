@@ -348,7 +348,8 @@ Traceback (most recent call last):
   File "<stdin>", line 6, in __init__
 __main__.AgeError: Client's age must be >= 18 years old!
 ```
-На последния ред виждаме съобщението, което сме подали при създаването на изключението. Съобщението след `__main__.AgeError:` стига до нас благодарение на имплементацията на метода `__str__` в `BaseException`. 
+На последния ред виждаме съобщението, което сме подали при създаването на изключението. Съобщението след `__main__.AgeError:` стига до нас благодарение на имплементацията на метода `__str__` в `BaseException`. (Това прозвуча като реклама. Музиката достига до вас, благодарение на "Това е твоят глас. МеНтел" :D)
+
 Ако се сещате, когато искаме да превърнем даден обект в `string` ние използваме вградената функция `str` и й подаваме този обект. Върнатият обект от `str` е резултатът от метода `__str__` на обекта, който сме подали.
 ```python
 class Client:
@@ -370,6 +371,53 @@ class Client:
 >>> str_client = str(client)
 >>> print(str_client)
 Multicet 56
+```
+
+В метода `__str__` на `BaseException` се крие нещо такова:
+```python
+def __str__(self):
+    if len(self.args) == 0:
+        return ''
+    if len(self.args) == 1:
+        return str(self.args[0])
+    return str(self.args)
+```
+
+След като `AgeError` и `Exception` не предефинират нищо, всичко идва от `BaseException` и ето какво се случва:
+```python
+class AgeError(Exception):
+    pass
+```
+```python
+>>> err = AgeError()
+>>> str(err)
+''
+
+>>> err = AgeError('wrong age')
+>>> str(err)
+'wrong age'
+
+>>> err = AgeError('wong age', 9)
+>>> str(err)
+"('wong age', 9)"
+```
+
+Съответно ако хвърляме грешка с `raise`:
+```python
+>>> raise AgeError # Same as: raise AgeError()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+__main__.AgeError
+
+>>> raise AgeError('wrong age')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+__main__.AgeError: wrong age
+
+>>> raise AgeError('wrong age', 9)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+__main__.AgeError: ('wrong age', 9)
 ```
 
 ___
