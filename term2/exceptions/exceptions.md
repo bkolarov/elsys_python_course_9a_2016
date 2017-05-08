@@ -610,6 +610,10 @@ Output:
 4. finally block
 4. This gets called no matter what!
 ```
+
+## Sorry for the long post. Here's a potato
+[](https://seanhamptoncole.files.wordpress.com/2014/09/wpid-photo-20140907084510.jpg)
+
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
