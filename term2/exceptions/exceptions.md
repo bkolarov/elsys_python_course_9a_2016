@@ -526,6 +526,90 @@ except (AgeError, NameError) as err:
 Output:
 something went wrong: Person must be >= 18 years old!
 ```
+
+## try-except-finally
+Понякога, когато пишем код с `try-except` структура, искаме определени операции да се извършат, независимо дали е възникнала грешка или не. След като всичко е приключило, искаме още нещо да се изпълни, без значение дали сме влезли в `except` блока или не. Например отворили сме мрежова връзка с друг компютър. Независимо дали всичко в `try` блока мине гладко или е възникнало изключение и сме влезли в `except` блока, ние искаме да затворим връзката накрая. Същото важи и с файловете. Отворили сме един файл, може да ни е гръмнало нещо или всичко да е било наред, накрая искаме да затворим този файл. `finally` блокът е мястото, където трябва да се случи това. `finally` блокът се слага след всички `except` блокве.
+
+```python
+try:
+    pass
+except:
+    pass
+finally:
+    pass
+```
+
+```python
+try:
+    pass
+except ValueError:
+    pass
+except NameError:
+    pass
+except:
+    pass
+finally:
+    pass
+```
+
+```python
+def divide_1_by_str_num(str_num):
+    return 1 / int(str_num)
+```
+
+```python
+try:
+	print('1. try block')
+	divide_1_by_str_num('0')
+    
+except ZeroDivisionError:
+	print('2. except ZeroDivisionError block')
+	print("2. you're dividing by zero")
+    
+except ValueError:
+	print('3. except ValueError block')
+	print('3. error converting your value to int')
+    
+finally:
+	print('4. finally block')
+	print('4. This gets called no matter what!')
+```
+
+```
+Output:
+1. try block
+2. except ZeroDivisionError block
+2. you're dividing by zero
+4. finally block
+4. This gets called no matter what!
+```
+
+```python
+try:
+	print('1. try block')
+	divide_1_by_str_num('a')
+    
+except ZeroDivisionError:
+	print('2. except ZeroDivisionError block')
+	print("2. you're dividing by zero")
+    
+except ValueError:
+	print('3. except ValueError block')
+	print('3. error converting your value to int')
+    
+finally:
+	print('4. finally block')
+	print('4. This gets called no matter what!')
+```
+
+```
+Output:
+1. try block
+3. except ValueError block
+3. error converting your value to int
+4. finally block
+4. This gets called no matter what!
+```
 ___
 Полезни и използвани връзки:
 * https://www.programiz.com/python-programming/exceptions
