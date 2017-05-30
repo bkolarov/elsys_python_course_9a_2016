@@ -13,7 +13,8 @@ class Stack:
 			self.value = value
 			self.prev = None
 		
-	def push(self, node):
+	def push(self, value):
+		node = Stack.Node(value)
 		if self.top == None:
 			self.top = node
 		else:
@@ -81,7 +82,7 @@ class Stack:
 stack = Stack()
 
 for i in range(10):
-	stack.push(Stack.Node(i))
+	stack.push(i)
 
 print(stack.is_empty())
 stack.clear()

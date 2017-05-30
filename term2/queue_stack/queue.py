@@ -17,7 +17,8 @@ class Queue:
 		def __str__(self):
 			return 'obj:with value: {}'.format(self.value)
 			
-	def enqueue(self, node):
+	def enqueue(self, value):
+		node = Queue.Node(value)
 		if self.head == None:
 			self.head = self.tail = node
 		else:
@@ -85,7 +86,7 @@ class Queue:
 q = Queue()
 
 for i in range(10):
-	q.enqueue(Queue.Node(i))
+	q.enqueue(i)
 	
 print('tail: ' + str(q.peek()))
 print('size: ' + str(len(q)))
