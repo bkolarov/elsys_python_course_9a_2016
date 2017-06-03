@@ -21,5 +21,5 @@ Output:
 ### Свързан списък (this time for real)
 В един свързан списък данните се съхраняват във т. нар. възли (nodes). Всеки възел държи стойност и обект към възела, който е след него.
 
-<img src="./resources/single_node.png">
+<img src="./resources/first_node.png">
 
