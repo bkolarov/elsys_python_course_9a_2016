@@ -741,11 +741,197 @@ class InvalidInsertionError(Exception):
 	- Ако условието е грешно преместваме `current_node` да сочи към следващия възел. 
 	След като мине цикъла, щом сме влезли в този блок, значи нищо от предните условия не се е изпълнило. Ако на нито една итерация не е влязло във вътрешния за цикъла `if`, `insert_succeeded` няма да бъде равно на `True`. 
 1. Края на функцията
+	```python
+	if insert_succeeded:
+		self.size += 1
+	else:
+		raise InvalidInsertionError
+	```
+- В случай, че вмъкването е успешно трябва да увеличим размера на списъка с 1.
+	
+- Ако нещо сме прецакали - дефинирали сме си изключението `InvalidInsertionError` и го създаваме, за да кажем, че нещо не е наред.
+
+LinkedList и InvalidInsertionError
 ```python
-if insert_succeeded:
-	self.size += 1
-else:
-	raise InvalidInsertionError
+class InvalidInsertionError(Exception):
+	def __init__(self):
+		super().__init__("Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value")
+		
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty():
+			self.head = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+	
+			current_node.next = new_node
+			
+		self.size += 1
+
+	def delete(self, value):
+		if self.is_empty():
+			return
+			
+		current_node = self.head
+	
+		if self.head.value == value:
+			self.head = self.head.next
+		else:
+			while current_node.next != None:
+				if current_node.next.value == value:
+					to_delete_node = current_node.next
+					current_node.next = to_delete_node.next
+					break
+					
+				current_node = current_node.next
+				
+		self.size -= 1
+
+	def insert(self, before_value, new_value):
+		new_node = LinkedList.Node(new_value)
+		insert_succeeded = False
+	
+		if self.is_empty():
+			insert_succeeded = False
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+		else:
+			current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+		
+		if insert_succeeded:
+			self.size += 1
+		else:
+			raise InvalidInsertionError
+
+	def __iter__(self):
+		return LinkedList.Iterator(self.head)
+
+	class Iterator:
+		def __init__(self, head):
+			self.current_node = head
+
+		def __next__(self):
+			if self.current_node == None:
+				raise StopIteration
+				
+			current_value = self.current_node.value
+			self.current_node = self.current_node.next
+			
+			return current_value
+
+	def is_empty(self):
+		return self.head == None
+
+	
+	def __len__(self):
+		return self.size
 ```
-	- В случай, че вмъкването е успешно трябва да увеличим размера на списъка с 1.
-	- Ако нещо сме прецакали - дефинирали сме си изключението `InvalidInsertionError` и го създаваме, за да кажем, че нещо не е наред.
+```python
+def print_list(linked_list):
+	for value in linked_list:
+		print(value)
+
+def print_info(msg, linked_list):
+	print(msg)
+	print('size: {}'.format(len(linked_list)))
+	print_list(linked_list)
+	print()	
+
+numbers = LinkedList()
+
+for i in range(5):
+	numbers.add(i)
+	
+
+print_info('before insertion', numbers)
+
+numbers.insert(3, 2.5)
+print_info('after insertion', numbers)
+
+numbers.insert(0, -1)
+print_info('after second insertion', numbers)
+
+
+numbers.insert(4, 3.5)
+print_info('after third insertion', numbers)
+
+print('invalid insertion')
+numbers.insert(5, 4)
+```
+
+```
+Output:
+before insertion
+size: 5
+0
+1
+2
+3
+4
+
+after insertion
+size: 6
+0
+1
+2
+2.5
+3
+4
+
+after second insertion
+size: 7
+-1
+0
+1
+2
+2.5
+3
+4
+
+after third insertion
+size: 8
+-1
+0
+1
+2
+2.5
+3
+3.5
+4
+
+invalid insertion
+Traceback (most recent call last):
+  File "list_ex.py", line 129, in <module>
+    numbers.insert(5, 4)
+  File "list_ex.py", line 74, in insert
+    raise InvalidInsertionError
+__main__.InvalidInsertionError: Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value
+```
+___
+### Sorry of the long post. Here is a cool potato
+![](https://i.imgur.com/HF9FmkL.jpg)
