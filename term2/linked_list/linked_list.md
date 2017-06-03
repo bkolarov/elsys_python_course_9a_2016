@@ -481,3 +481,4 @@ Output:
 cars size: 4
 names size: 5
 ```
+### Премахване на възел
