@@ -77,10 +77,9 @@ def print_list(first_node):
 Какво прави функцията?
 1. `current_node = first_node` - Минаваме през всеки един възел от списъка. Всеки един възел достъпваме, чрез името `current_node`. Започваме от първия възел, затова казваме, че `current_node` ще сочи към същия обект, към който сочи и `first_node`. 
 1. `current_node = current_node.next` - След като сме приключили със сегашния възел, преминаваме на следващия. Всеки възел държи връзка към следващия. Съответно казваме, че `current_node` ще сочи към `current_node.next`. Така с `current_node` вече достъпваме следващия елемент.
-1. `while current_node != None:` - 
+1. `while current_node != None:` - Последният възел няма следващ, затова неговият `next` сочи към None. След като на всяка итерация `current_node` сочи към следващия възел, той в един момент ще стигне последния. Когато приключи и с последния, `current_node = current_node.next` ще се изпълни, където `current_node.next` сочи към None, следователно `current_node` ще сочи към None и цикълът ще приключи.
 
-
-
+<img src="./resources/iterate_nodes.png">
 
 
 
