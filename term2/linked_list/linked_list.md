@@ -483,6 +483,7 @@ Output:
 cars size: 4
 names size: 5
 ```
+
 ### Премахване на възел
 За да премахнем един възел, трябва просто да премахнем връзката към него. След като няма връзка към обекта, той ще бъде унищожен. Казано с думи - на възела, чийто `next` сочи към този, който искаме да изтрием, казваме, че следващият му възел е следващия на този, който искаме да изтрием. Ако имаме списък A -> B -> C (А сочи към В, който сочи към С) и искаме да изтрием B. Казваме просто A -> C (А да сочи към С).
 
@@ -618,7 +619,6 @@ cars.add('Ford')
 
 print_info('before deletion', cars)
 
-
 cars.delete('BMW')
 print_info('after deletion', cars)
 
@@ -654,3 +654,98 @@ cars size: 1
 VW
 
 ```
+
+### Вмъкване на възел
+Вмъкването на възел ще е доста подобно на триенето на такъв. Отново ще работим с `current_node` и отново ще проверяваме следващия му възел. Функцията за вмъкване ще трябва да добави нов възел на мястото на друг. На мястото на кой възел ще вмъква, ще зависи от подадена стойност. Например ако имаме списък 1 -> 2 -> 4 -> 5, ще искаме да вмъкнем нов възел със стойност 3 на мястото на 4. Така ще се получи 1 -> 2 -> 3 -> 4 -> 5.
+
+Съобразяваме същите неща като при триенето:
+	- Списъкът може да е празен.
+	- Нямаме достъп до предходния възел, ако проверяваме дали да вмъкнем на мястото на `current_node`, а не на `current_node.next`.
+	- Може да вмъкваме на мястото на първия възел.
+
+<img src="./resources/insert_node.png">
+
+```python
+class InvalidInsertionError(Exception):
+	def __init__(self):
+		super().__init__("Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value")
+		
+	def insert(self, before_value, new_value):
+		new_node = LinkedList.Node(new_value)
+		insert_succeeded = False
+	
+		if self.is_empty():
+			insert_succeeded = False
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+		else:
+			current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+		
+		if insert_succeeded:
+			self.size += 1
+		else:
+			raise InvalidInsertionError
+```
+
+Какво прави функцията?
+1. `insert_succeeded = False` - Има два случая, в които вмъкването може да се провали - ако списъкът е празен или ако няма такъв възел, на чието място да вмъкнем (няма възел със стойност равна на `before_value`). Приемаме, че първоначално `insert_succeeded` е `False`, защото е по-лесно да му дадем стойност `True`, когато успеем да вмъкнем. В противен случай в `else` блока трябва да проверяваме дали цикълът е свършил без да вмъкваме каквото и да било и да зададем стойност `False`. Това е в случай, че сме създали `insert_succeeded` инициализирано с `True`, а не с `False`. Написано по сегашния начин си спестяваме някой друг `if`.
+1. Вмъкване в празен списък
+	```python
+		if self.is_empty():
+			insert_succeeded = False
+	```
+		Не можем да търсим да вмъкнем на място на някой възел, като нямаме никакви възли. Вмъкването не е успешно.
+1. Вмъкване на мястото на `head`
+	```python
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+	```
+	В случай, че мястото, на което вмъкваме, е първия възел - запазваме кой е първия възел (`tmp = self.head`), казваме, че сегашният първи възел вече ще е следващия на новия първи възел (`new_node.next = tmp`) и накрая казваме, че новият възел е първи (`self.head = new_node`). Вмъкването е успешно.
+1. Вмъкване навътре в списъка:
+	```python
+		current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+	```
+	Минаваме през всички възли и на всеки текущ възел (`current_node`) проверяваме дали не трябва да вмъкнем на мястото на следващия (`current_node.next`). 
+	- Ако условието (`if current_node.next.value == before_value:`) е вярно, значи вмъкваме на мястото на следващия елемент. 		
+		* Казваме, че на новия възел следващият е следващия на сегашния възел:
+			```python
+				new_node.next = current_node.next
+			```
+		* Казваме на текущия възел, че следващият му е новия възел:
+			```python
+				current_node.next = new_node
+			```
+		* Вмъкването е успешно и прекратяваме цикъла
+	- Ако условието е грешно преместваме `current_node` да сочи към следващия възел. 
+	След като мине цикъла, щом сме влезли в този блок, значи нищо от предните условия не се е изпълнило. Ако на нито една итерация не е влязло във вътрешния за цикъла `if`, `insert_succeeded` няма да бъде равно на `True`. 
+1. Края на функцията
+```python
+if insert_succeeded:
+	self.size += 1
+else:
+	raise InvalidInsertionError
+```
+	- В случай, че вмъкването е успешно трябва да увеличим размера на списъка с 1.
+	- Ако нещо сме прецакали - дефинирали сме си изключението `InvalidInsertionError` и го създаваме, за да кажем, че нещо не е наред.
