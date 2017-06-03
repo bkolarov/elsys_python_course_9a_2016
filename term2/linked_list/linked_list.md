@@ -383,3 +383,101 @@ Spas
 Mariika
 Scott Pilgrim
 ```
+
+Обърнете внимание на добавянето на стойности. Просто казваме `names.add('Multicet')`. Знаем, че класът сам се оправя да създаде новия възел. **В противен случай** трябваше ние да пишем `names.add(LinkedList.Node('Multicet'))`. Спестихме си малко писане на код.
+
+### len()
+Досега пазихме размера на списъка и го увеличавахме всеки път, когато добавим нов възел. За нищо не го използваме, обаче. 
+
+Как се взима размера на един `list` в Python? 
+```python
+l = [1, 2, 3]
+print(len(l))
+```
+```
+Output:
+3
+```
+
+Щеше да е яко, ако можехме да направим същото и при нас. Примерно `print(len(linked_list))`. Всъщност ще е доста просто да се направи.
+`len()` е една от вградените в Python функции, която извиква функцията `__len__` на подадения й обект. Имплементираме една такава в LinkedList и сме готови.
+```python
+def __len__(self):
+	return self.size
+```
+
+Целия клас до момента:
+```python
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty():
+			self.head = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+	
+			current_node.next = new_node
+			
+		self.size += 1
+
+	def __iter__(self):
+		return LinkedList.Iterator(self.head)
+
+	class Iterator:
+		def __init__(self, head):
+			self.current_node = head
+
+		def __next__(self):
+			if self.current_node == None:
+				raise StopIteration
+				
+			current_value = self.current_node.value
+			self.current_node = self.current_node.next
+			
+			return current_value
+
+	def is_empty(self):
+		return self.head == None
+
+	
+	def __len__(self):
+		return self.size
+```
+```python
+cars = LinkedList()
+names = LinkedList()
+
+cars.add('BMW')
+cars.add('VW')
+cars.add('Mazda')
+cars.add('Ford')
+
+print('cars size: {}'.format(len(cars)))
+
+names.add('Stamat')
+names.add('Multicet')
+names.add('Spas')
+names.add('Mariika')
+names.add('Scott Pilgrim')
+
+print('names size: {}'.format(len(names)))
+```
+
+```
+Output:
+cars size: 4
+names size: 5
+```
