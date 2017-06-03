@@ -343,3 +343,43 @@ class LinkedList:
 	def is_empty(self):
 		return self.head == None
 ```
+
+Сега можем да си дефинираме отново функцията `print_list`, която този път ще приема обект `LinkedList` и ще й е много по-лесно да премине и да изкара стойностите от списъка на екрана.
+```python
+def print_list(linked_list):
+	for value in linked_list:
+		print(value)
+```
+
+```python
+cars = LinkedList()
+names = LinkedList()
+
+cars.add('BMW')
+cars.add('VW')
+cars.add('Mazda')
+cars.add('Ford')
+
+names.add('Stamat')
+names.add('Multicet')
+names.add('Spas')
+names.add('Mariika')
+names.add('Scott Pilgrim')
+
+print_list(cars)
+print()
+print_list(names)
+```
+```
+Output:
+BMW
+VW
+Mazda
+Ford
+
+Stamat
+Multicet
+Spas
+Mariika
+Scott Pilgrim
+```
