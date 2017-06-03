@@ -10,7 +10,8 @@ l = [1, 2, 3, 4]
 print(l[0])
 print(l[1])
 print(l[3])
-
+```
+```
 Output: 
 1
 2
@@ -135,9 +136,125 @@ add(head, 5)
 add(head, 'Multicet')
 
 print_list(head)
-
+```
+```
 Output:
 1
 5
 Multicet
 ```
+
+## Клас LinkedList
+С цел удобство, четимост на кода, модуларност, капсулиране и тн., ще създадем клас `LinkedList`. Операциите ще се извършват вътре в класа. Класът ще се грижи за тях. Освен това този клас ще може да държи информация за самия списък. Примерно неговия размер. Така всеки път като създаваме списък, ще имаме дължината на всеки списък поотделно.
+
+```python
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+	
+		while current_node.next != None:
+			current_node = current_node.next
+	
+		current_node.next = new_node
+		self.size += 1
+
+ll = LinkedList()
+
+ll.add(1)
+```
+
+Държим `head` локално за обектите `LinkedList`, следователно го достъпваме посредством `self`. Казахме, че ще пазим размера на всеки свързан списък. За целта при инициализиране на нов обект `LinkedList`, създаваме променлива `size` и я инициализираме с 0 (първоначално списъкът е празен) - `self.size = 0`. Увеличаваме тази променлива накрая на метода `add`, т.е. всеки път като добавим нов елемент. 
+
+Какво е първото нещо, което забелязваме щом изпълним този код? Че той не работи.
+
+```
+Output:
+Traceback (most recent call last):
+  File "list_ex.py", line 24, in <module>
+    ll.add(1)
+  File "list_ex.py", line 16, in add
+    while current_node.next != None:
+AttributeError: 'NoneType' object has no attribute 'next'
+```
+
+Има един съществен проблем. Кога е празен списъкът? Когато `self.head = None`.
+
+Какво се случва? В `add` използваме `self.head`. `self.head`, обаче, е `None` в началото (още не сме добавили нищо). `current_node` сочи там, където и `self.head`, т.е. също към `None`. В цикъла се опитваме на `current_node`, който сочи към `None`, да достъпим атрибут с име `next`. Това е все едно да напишем <br>`None.next != None`. Не работи.
+
+Просто решение - преди цикъла във функцията `add`, ще проверим дали списъкът не е празен. Ако е празен, казваме на `self.head` да сочи към новия елемент и приключваме. В случай, че ще ни трябва и в бъдеще, ще дефинираме функция, която казва дали списъкът е празен и ли не. Тя ще изглежда така:
+
+```python
+	def is_empty(self):
+		return self.head == None
+```
+
+Промяната на `add` е следната:
+```python
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty(): # Notice the difference
+			self.head = new_node
+			return
+	
+		while current_node.next != None:
+			current_node = current_node.next
+	
+		current_node.next = new_node
+		self.size += 1
+```
+
+Целия клас досега:
+```python
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty():
+			self.head = new_node
+			return
+	
+		while current_node.next != None:
+			current_node = current_node.next
+	
+		current_node.next = new_node
+		self.size += 1
+
+	def is_empty(self):
+		return self.head == None
+```
+```python
+ll = LinkedList()
+
+ll.add(1)
+```
+Не гърми. 
+Липсва една функция, която написахме по-рано. Функцията за изкарване на списъка на екрана. Тя какво трябва да прави? Да итерира по целия списък и да изкара стойността на всеки възел. Итериране. И..террр...атор.
+
+### Итератор
+В случай, че сте забравили, може да погледнете [урока за итератори](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/iterators_generators/iterators_generators.md).
+
+
