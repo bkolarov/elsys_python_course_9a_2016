@@ -81,9 +81,63 @@ def print_list(first_node):
 
 <img src="./resources/iterate_nodes.png">
 
+___
+При имплементация на свързан списък пазим само първия възел. Конвенцията е да го достъпваме, чрез име `head`. Да дефинираме функция, която добавя нов възел в края на списъка. Нека функцията приема `head` и само стойността, която ще се държи, а самия `Node` да го създава тя.
 
+```python
+def add(head, value):
+	new_node = Node(value)
+	current_node = head
+	
+	while current_node.next != None:
+		current_node = current_node.next
+	
+	current_node.next = new_node
+```
 
+Какво прави функцията?
+1. `def add(head, value)` - Приема само първия възел от списъка и стойността, която ще се държи във възел, който ще закачим накрая.
+1. `new_node = Node(value)` - След като функцията приема стойността на новия възел, а не самия възел, тогава създаваме новия възел ние. По-късно ще разберете, защо го правим по този начин.
+1. `current_node = head` - Трябва да минем през всички възли в списъка (както направихме във функцията `print_list`). Разбира се ще започнем от първия.
+1. Цикъла
+	```python
+	while current_node.next != None:
+			current_node = current_node.next
+	```
+	За разлика от функцията `print_list`, тук не итерираме докато `current_node` не сочи към `None`, а докато `current_node.next` не сочи към `None`. Схващате ли разликата? Искаме да стигнем до последния възел, а не до един след него. Последният възел е този, чийто `next` сочи към `None` (вижте картинките). В момента, в който `current_node.next` сочи към `None`, значи `current_node` е последния възел.
+1. `current_node.next = new_node` - След като цикълът приключи, `current_node` ще сочи към текущия последен възел. Към него закачаме новия възел.
 
+Да пробваме как работи.
+```python
+class Node:
+	def __init__(self, value):
+		self.value = value
+		self.next = None
 
+def print_list(head):
+	current_node = head
+	while current_node != None:
+		print(current_node.value)
+		current_node = current_node.next
 
+def add(head, value):
+	new_node = Node(value)
+	current_node = head
+	
+	while current_node.next != None:
+		current_node = current_node.next
+	
+	current_node.next = new_node
 
+head = Node(1)
+
+add(head, 5)
+add(head, 'Multicet')
+
+print_list(head)
+
+Output:
+1
+5
+Multicet
+```
