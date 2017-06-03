@@ -932,6 +932,8 @@ Traceback (most recent call last):
     raise InvalidInsertionError
 __main__.InvalidInsertionError: Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value
 ```
+
+Линк към целия код: https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/linked_list/linked_list.py
 ___
 ### Sorry of the long post. Here is a cool potato
 ![](https://i.imgur.com/HF9FmkL.jpg)
