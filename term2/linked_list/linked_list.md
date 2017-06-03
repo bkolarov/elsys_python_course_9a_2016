@@ -207,12 +207,12 @@ AttributeError: 'NoneType' object has no attribute 'next'
 
 		if self.is_empty(): # Notice the difference
 			self.head = new_node
-			return
-	
-		while current_node.next != None:
-			current_node = current_node.next
-	
-		current_node.next = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+
+			current_node.next = new_node
+			
 		self.size += 1
 ```
 
@@ -235,12 +235,12 @@ class LinkedList:
 
 		if self.is_empty():
 			self.head = new_node
-			return
-	
-		while current_node.next != None:
-			current_node = current_node.next
-	
-		current_node.next = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+
+			current_node.next = new_node
+			
 		self.size += 1
 
 	def is_empty(self):
@@ -251,10 +251,95 @@ ll = LinkedList()
 
 ll.add(1)
 ```
-Не гърми. 
+Не гърми.<br>
 Липсва една функция, която написахме по-рано. Функцията за изкарване на списъка на екрана. Тя какво трябва да прави? Да итерира по целия списък и да изкара стойността на всеки възел. Итериране. И..террр...атор.
 
 ### Итератор
 В случай, че сте забравили, може да погледнете [урока за итератори](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/iterators_generators/iterators_generators.md).
+За да можем да итерираме по списъка, трябва класът `LinkedList` да спазва итератор протокола. Какъв беше той? - Да имплементира функцията `__iter__`, която да връща обект, чийто клас има функцията `__next__`. 
 
+Ще дефинираме вътрешен за `LinkedList` клас на име `Iterator`. Негова инстанция ще се връща от метода `__iter__`. Този клас ще иска да има `head`-а на списъка. Все пак трябва да започне от първия елемент. При всяко извикване на `__next__`, този метод ще връща стойността от следващия във списъка възел.
 
+### LinkedList.Iterator
+```python
+class Iterator:
+		def __init__(self, head):
+			self.current_node = head
+
+		def __next__(self):
+			if self.current_node == None:
+				raise StopIteration
+				
+			current_value = self.current_node.value
+			self.current_node = self.current_node.next
+			
+			return current_value
+```
+
+1. Итераторът трябва да започва от първия възел - `head`. 
+	```python
+			def __init__(self, head):
+				self.current_node = head
+	```
+1. Списъкът е празен, ако `head` сочи към `None`. Тогава и `current_node` ще е `None`. Отделно ще сме минали всички възли от списъка, когато `current_node` стане `None` (вижте картинките по-горе). И в двата случая `self.current_node` ще е `None`, затпва трябва да кажем, че приключваме с итерирането.
+	```python
+			def __next__(self):
+				if self.current_node == None:
+					raise StopIteration
+				...
+	```
+1. Преди да преместим `current_node` да сочи към следващия възел, трябва да запазим стойността на сегашния възел, за да може `__next__` да я върне - `current_value = self.current_node.value`
+1. Преместваме `current_node` към следващия възел и връщаме запазената стойност:
+	```python
+	...
+	self.current_node = self.current_node.next
+	
+	return current_value
+	```
+	
+Целият клас `LinkedList` към момента:
+``python
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty():
+			self.head = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+	
+			current_node.next = new_node
+			
+		self.size += 1
+
+	def __iter__(self):
+		return LinkedList.Iterator(self.head)
+
+	class Iterator:
+		def __init__(self, head):
+			self.current_node = head
+
+		def __next__(self):
+			if self.current_node == None:
+				raise StopIteration
+				
+			current_value = self.current_node.value
+			self.current_node = self.current_node.next
+			
+			return current_value
+
+	def is_empty(self):
+		return self.head == None
+```
