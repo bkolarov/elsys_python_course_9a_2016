@@ -298,7 +298,7 @@ class Iterator:
 	```
 	
 Целият клас `LinkedList` към момента:
-``python
+```python
 class LinkedList:
 
 	def __init__(self):
