@@ -324,10 +324,10 @@ class LinkedList:
 			
 		self.size += 1
 
-	def __iter__(self):
+	def __iter__(self): # new method
 		return LinkedList.Iterator(self.head)
 
-	class Iterator:
+	class Iterator: # new inner class
 		def __init__(self, head):
 			self.current_node = head
 
@@ -453,7 +453,7 @@ class LinkedList:
 		return self.head == None
 
 	
-	def __len__(self):
+	def __len__(self): # new method
 		return self.size
 ```
 ```python
