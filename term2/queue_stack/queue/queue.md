@@ -15,7 +15,7 @@
 
 Триене посредата на опашката нямаме. Приемаме, че трябва да минем през цялата информация, която е записана в структурата. Ако някой е решил да се реди за безплатни кебабчета, няма да си тръгне, пък каквото ще да става.
 
-## Имплементация
+# Имплементация
 Опашка може да се имплементира по повече от един начин. Може да е чрез обикновен масив, може и чрез свързан списък. 
 
 ### Чрез масив
@@ -35,7 +35,7 @@
 На изображението по-долу е показана една и съща опашка. В горната опашка махаме един възел и добавяме нов. Долната опашка е резултата.
 <img src="./resources/queue_operations.png">
 
-### Клас Queue
+# Клас Queue
 Също като при свързания списък, ще имаме един клас, който ще се грижи за добавянето и махането на елементи. Ще имаме и втори вътрешен клас Node, който да представлява възела.
 
 ```python
@@ -52,7 +52,7 @@ class Queue:
 			self.prev = None
 ```
 
-### enqueue
+## enqueue()
 Функцията за добавяне ще приема стойността, която искаме да държим в опашката. Тя ще създава възела и ще го добавя като предишен на сегашния `tail`. Имаме два случая, които могат да възникнат:
 - Опашката може да е празна - тогава и `head` и `tail` ще бъдат `None`. В този случай и на двата ще кажем да сочат към новия възел.
 - Опашката не е празна - тогава просто добавяме новия възел като предишен на `tail`. После преместваме `tail` да сочи към новия възел, тъй като той ще е новият последен такъв. Когато се наредите на опашка в лавката, вие ставате последния чакащ.
@@ -113,3 +113,98 @@ Output:
     ```
     Ако в опашката вече има възли, то `tail` сочи към текущия последен такъв. Когато добавяме нов, казваме на последния кой му е преидшен: `self.tail.prev = new_node`. След което преместваме `tail` да сочи към новия последен: `self.tail = new_node`. 
 - Увеличаваме размера с единица.
+
+## len()
+Също като при свързания списък можем да имплементираме функцията `__len__` в класа `Queue`. Така можем да подадем обекта на опашката на вградената функция `len()` и да разберем какъв е нейният размер.
+
+```python
+	def __len__(self):
+		return self.size
+```
+
+## dequeue()
+Когато вадим възел от опашката, вадим този, който е най-отпред (този, към който сочи `head`). На опашката на касата, касиерът обслужва първият на опашката, а не последния. Иначе щеше да е странно. Припомням пак методологията FIFO - First In First Out.
+Когато клиент стигне до касата, касиерът взима информация от него, а именно какво иска да плати този човек. Съответно в имплементацията на опашката правим същото. Когато изкарваме възел от нея, взимаме стойността, която е в него. Тази стойност ще бъде връщана от `dequeue()`.
+
+```python
+def dequeue(self):
+		dequeued_value = None
+		
+		if self.is_empty():
+			dequeued_value = None
+		elif self.size == 1:
+			dequeued_value = self.head.value
+			self.head = self.tail = None
+		else:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			
+			
+		self.size = (self.size - 1) if self.size > 0 else 0
+		
+		return dequeued_value
+```
+```python
+def print_queue(q):
+	current = q.head
+	if current == None:
+		return
+		
+	while current != None:
+		print(current.value)
+		current = current.prev
+
+def print_info(msg, q):
+	print(msg)
+	print('queue size: {}'.format(len(q)))
+	print_queue(q)
+	print()
+
+q = Queue()
+
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+
+print_info('before dequeue', q)
+
+print('dequeued value: {}'.format(q.dequeue()))
+print_info('after dequeue', q)
+
+print('dequeued value: {}'.format(q.dequeue()))
+print_info('after second dequeue', q)
+
+print('dequeued value: {}'.format(q.dequeue()))
+print_info('after third dequeue', q)
+
+print('dequeued value: {}'.format(q.dequeue()))
+print_info('after dequeue from empty queue', q)
+```
+```
+Output:
+before dequeue
+queue size: 3
+1
+2
+3
+
+dequeued value: 1
+after dequeue
+queue size: 2
+2
+3
+
+dequeued value: 2
+after second dequeue
+queue size: 1
+3
+
+dequeued value: 3
+after third dequeue
+queue size: 0
+
+dequeued value: None
+after dequeue from empty queue
+queue size: 0
+
+```
