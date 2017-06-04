@@ -408,3 +408,157 @@ class Queue:
 	def is_empty(self):
 		return self.head == None and self.tail == None
 ```
+## Итератор
+Отново, добре ще е да си припомните [урока за итератори](https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/iterators_generators/iterators_generators.md).
+
+За да спазим итератор протокола, опашката трябв да имплементира метода `__iter__`, който да връща обект, чийто клас има метода `__next__`. Методът `__next__` ще се извиква на всяка итерация при използване на опашката в цикъл.
+
+Да си дефинираме итератор класа и `__iter__` метода. Класът ще бъде вътрешен за `Queue`.
+```python
+def __iter__(self):
+		return Queue.Iterator(self)
+		
+	class Iterator:
+		def __init__(self, queue):
+			self.queue = queue
+			
+		def __next__(self):
+			dequeued_value = self.queue.dequeue()
+			if dequeued_value == None:
+				raise StopIteration
+			else:
+				return dequeued_value
+```
+
+Тъй като това е опашка и се очаква, че този, който работи с нея, ще иска да мине възлите един по един и после като е приключил с тях, тях не трябва да ги има, то затова в итератора няма просто да взимаме стойността от текущия възел, а направо ще откачаме възела. След като итерираме през целялата опашка, тя накрая ще е празна, защото на всеки `__next__` извикваме `dequeue()`. 
+
+- `__iter__`
+	```python
+	def __iter__(self):
+			# Pass the object of the queue we want to iterate. This is self.
+			return Queue.Iterator(self)
+	```
+	След като на всяка итерация ние извикваме `dequeue()`, ние трябва да имаме обекта на самата опашка, а не `head`. Все пак извикваме `q.dequeue()`, *а не `head.dequeue()`*. Затова подаваме на итератор класа опашката, по която искаме да итерираме. Работим вътре в класа, затова този обект е `self`. Подаваме на итератор класа `self`. 
+
+- `__init__(self, queue):`
+	```python
+	def __init__(self, queue):
+			self.queue = queue
+	```
+	Както казахме по-горе, на итератора подаваме самата опашка, по която итерираме. Запазваме обекта в атрибут за `Queue.Iterator`, за да имаме достъп до този обект в `__next__()`. 
+- `__next__(self):`
+	```python
+	def __next__(self):
+			dequeued_value = self.queue.dequeue()
+			if dequeued_value == None:
+				raise StopIteration
+			else:
+				return dequeued_value
+	```
+	`__next__` трябва да връща стойността на възела, до който сме стигнали. Също така, трябва и да извадим този възел. Запазваме стойността върната от `dequeue()`. `dequeue()` трие възела и връща стойността му (така сме го написали по-горе). 
+	```python
+	dequeued_value = self.queue.dequeue()
+	```
+	* Ако `dequeue()` върне `None`, значи опашката вече е празна. Казваме, че трябва да спрем цикъла.
+		```python
+		if dequeued_value == None:
+				raise StopIteration
+		...
+		```
+	* Ако `dequeue()` върне стойност, различна от `None`, то ние сме я запазили в `dequeued_value` и просто я връщаме.
+		```python
+		...
+		else:
+				return dequeued_value
+		```
+
+Целият клас досега:
+```python
+class InvalidNodeError(Exception):
+	def __init__(self):
+		super().__init__('Attempting to enqueue a None value to the queue is forbidden.')
+
+class Queue:
+	def __init__(self):
+		self.head = self.tail = None
+		self.size = 0
+		
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.prev = None
+			
+	def enqueue(self, value):
+		if value == None:
+			raise InvalidNodeError
+			
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+		
+	def dequeue(self):
+		dequeued_value = None
+		
+		if self.is_empty():
+			dequeued_value = None
+		elif self.size == 1:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			self.tail = None
+		else:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			
+			
+		self.size = (self.size - 1) if self.size > 0 else 0
+		
+		return dequeued_value
+		
+	def peek(self):
+		if self.is_empty():
+			return None
+		else:
+			return self.head.value
+		
+	def __iter__(self):
+		return Queue.Iterator(self)
+		
+	class Iterator:
+		def __init__(self, queue):
+			self.queue = queue
+			
+		def __next__(self):
+			dequeued_value = self.queue.dequeue()
+			if dequeued_value == None:
+				raise StopIteration
+			else:
+				return dequeued_value
+		
+	def __len__(self):
+		return self.size
+		
+	def is_empty(self):
+		return self.head == None and self.tail == None
+```
+```python
+q = Queue()
+
+q.enqueue('First')
+q.enqueue('Second')
+q.enqueue('Third')
+
+for value in q:
+	print('dequeued: {}'.format(value))
+```
+```
+Output:
+dequeued: First
+dequeued: Second
+dequeued: Third
+```
