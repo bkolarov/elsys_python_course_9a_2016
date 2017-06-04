@@ -310,3 +310,101 @@ peek: First
 dequeue: First
 peek: Second
 ```
+
+## enqueue(None)
+Ще кажем, че за нашата опашка ще е забранено да добавяме `None` стойност. Дефинираме изключение:
+```python
+class InvalidNodeError(Exception):
+	def __init__(self):
+		super().__init__('Attempting to enqueue a None value to the queue is forbidden.')
+```
+И просто в началото на функцията `enqueue()` ще проверим дали подадената стойност не е `None`. Ако е, хвърляме изключението.
+```python
+def enqueue(self, value):
+		if value == None:
+			raise InvalidNodeError
+			
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+```
+```python
+q = Queue()
+q.enqueue(None)
+```
+```
+Output:
+Traceback (most recent call last):
+  File "queue.py", line 85, in <module>
+    q.enqueue(None)
+  File "queue.py", line 17, in enqueue
+    raise InvalidNodeError
+__main__.InvalidNodeError: Attempting to enqueue a None value to the queue is forbidden.
+```
+
+Целият клас досега:
+```python
+class InvalidNodeError(Exception):
+	def __init__(self):
+		super().__init__('Attempting to enqueue a None value to the queue is forbidden.')
+
+class Queue:
+	def __init__(self):
+		self.head = self.tail = None
+		self.size = 0
+		
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.prev = None
+			
+	def enqueue(self, value):
+		if value == None:
+			raise InvalidNodeError
+			
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+		
+	def dequeue(self):
+		dequeued_value = None
+		
+		if self.is_empty():
+			dequeued_value = None
+		elif self.size == 1:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			self.tail = None
+		else:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			
+			
+		self.size = (self.size - 1) if self.size > 0 else 0
+		
+		return dequeued_value
+		
+	def peek(self):
+		if self.is_empty():
+			return None
+		else:
+			return self.head.value
+		
+	def __len__(self):
+		return self.size
+		
+	def is_empty(self):
+		return self.head == None and self.tail == None
+```
