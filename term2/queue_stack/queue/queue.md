@@ -562,3 +562,137 @@ dequeued: First
 dequeued: Second
 dequeued: Third
 ```
+## clear()
+При чистене на опашката трябва да разкачим всички обекти. Няма нужда да ги минаваме един по един с `dequeue`. Ако си представим цялата опашка като една верига, то тази верига я държим в двата края. Единият край е `head`, другият `tail`. 
+```python
+def clear(self):
+	# We are not pointing to any Node objects anymore.
+	self.head = self.tail = None
+	self.size = 0
+```
+
+```python
+q = Queue()
+
+q.enqueue('First')
+q.enqueue('Second')
+q.enqueue('Third')
+
+q.clear()
+print(len(q))
+```
+```
+Output:
+0
+```
+
+Целият клас досега:
+```python
+class InvalidNodeError(Exception):
+	def __init__(self):
+		super().__init__('Attempting to enqueue a None value to the queue is forbidden.')
+
+class Queue:
+	def __init__(self):
+		self.head = self.tail = None
+		self.size = 0
+		
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.prev = None
+			
+	def enqueue(self, value):
+		if value == None:
+			raise InvalidNodeError
+			
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+		
+	def dequeue(self):
+		dequeued_value = None
+		
+		if self.is_empty():
+			dequeued_value = None
+		elif self.size == 1:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			self.tail = None
+		else:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			
+			
+		self.size = (self.size - 1) if self.size > 0 else 0
+		
+		return dequeued_value
+		
+	def peek(self):
+		if self.is_empty():
+			return None
+		else:
+			return self.head.value
+		
+	def clear(self):
+		self.head = self.tail = None
+		self.size = 0
+		
+	def __iter__(self):
+		return Queue.Iterator(self)
+		
+	class Iterator:
+		def __init__(self, queue):
+			self.queue = queue
+			
+		def __next__(self):
+			dequeued_value = self.queue.dequeue()
+			if dequeued_value == None:
+				raise StopIteration
+			else:
+				return dequeued_value
+		
+	def __len__(self):
+		return self.size
+		
+	def is_empty(self):
+		return self.head == None and self.tail == None
+```
+___
+Освен данни, можем да държим и функции в опашката. Всичко в Python е обект, remember? 
+```python
+customers_queue = Queue()
+
+customers_queue.enqueue(lambda: print("I'm buying some chocolate"))
+customers_queue.enqueue(lambda: print("I'd like to buy some weird vegan stuff."))
+customers_queue.enqueue(lambda: print("Where is the toilet?"))
+
+for customer in customers_queue:
+	customer()
+```
+```
+Output:
+I'm buying some chocolate
+I'd like to buy some weird vegan stuff.
+Where is the toilet?
+```
+
+Малка разлика в тялото на цикъла:
+```python
+for customer in customers_queue:
+	print(customer) # We are printing the function object
+```
+```
+Output:
+<function <lambda> at 0x7f35700fdbf8>
+<function <lambda> at 0x7f35700fdc80>
+<function <lambda> at 0x7f35700fdd08>
+```
+___
+<img src="https://previews.123rf.com/images/lamplightersdv/lamplightersdv0910/lamplightersdv091000034/5736732-Dog-from-washed-potato-with-carrot-tail-Stock-Photo.jpg">
