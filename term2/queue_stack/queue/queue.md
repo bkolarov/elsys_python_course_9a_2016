@@ -134,7 +134,8 @@ def dequeue(self):
 			dequeued_value = None
 		elif self.size == 1:
 			dequeued_value = self.head.value
-			self.head = self.tail = None
+			self.head = self.head.prev
+			self.tail = None
 		else:
 			dequeued_value = self.head.value
 			self.head = self.head.prev
@@ -208,3 +209,29 @@ after dequeue from empty queue
 queue size: 0
 
 ```
+
+Какво прави функцията?
+- `dequeue()` трябва да върне стойност. Има няколко случая, които трябва да съобразим при dequeue, но при всеки един ние все пак трябва да върнем нещо. Предварително си създаваме променлива за връщаната стойност и приемаме, че тя първоначално ще е `None`:
+	```python
+	def dequeue(self):
+		dequeued_value = None
+	```
+- Случай, в който опашката е празна:
+	```python
+	if self.is_empty():
+			dequeued_value = None
+	...
+	```
+	Когато опашката е празна, няма какво да върнем, затова ще върнем `None`.
+- Когато в опашката е останал само един възел и искаме да извадим и него тярбва да се замислим за едно нещо. По принцип при всяко вадене от опашката, ние преместваме `head` към предишния, на този който вадим, възел. В същото време `tail` не го пипаме. Той винаги си сочи към последния възел (този най-отзад). Когато обаче ние е останал само един възел, щом извадим и него, трябва и `head` и `tail` да сочат към `None`. Ако преместим само `head`, да сочи към предишния на този възел (възелът е последния останал, предишният му е `None`), тогава само `head` ще сочи към `None`, но `tail` ще продължи да сочи към съшия този възел. Затова в този случай, трябва да откъснем и двете връзки.
+```python
+...
+elif self.size == 1:
+	dequeued_value = self.head.value
+	# This is the last node in the queue hence both head and tail should be None after dequeue.
+	self.head = self.head.prev # self.head.prev is None since self.head points to the last node
+	self.tail = None
+...
+```
+<img src="./resources/dequeue_last_node.png">
+
