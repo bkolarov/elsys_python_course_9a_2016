@@ -1,5 +1,5 @@
 ## Структури от данни
-Структурите от данни са начинът, по който тези данни са организирани, така че операциите върху тези данни да са лесни, бързи и ефикасни. Досега сте запознати с поне два вида структури от данни - `list` и `dictionary`. В `list` данните са подредени последователно и се достъпват чрез съотетния индекс. В `dictionary` данните се достъпват чрез ключ. Всеки запис може да си го представите като Key-Value двойка. Достъпвате определена стойност чрез нейния ключ. 
+Структурите от данни са начинът, по който тези данни са организирани, така че операциите върху тези данни да са лесни, бързи и ефикасни. Досега сте се запознали с поне два вида структури от данни - `list` и `dictionary`. В `list` данните са подредени последователно и се достъпват чрез съотетния индекс. В `dictionary` данните се достъпват чрез ключ. Всеки запис може да си го представите като Key-Value двойка. Достъпвате определена стойност чрез нейния ключ. 
 
 Тук ще се разгледа и имплементира друг вид стуктура от данни - свързан списък.
 
@@ -30,7 +30,7 @@ Output:
 
 <img src="./resources/two_nodes.png">
 
-Първият елемент е със стойност `1`. След като вече имаме и втори елемент, `next` на първия обектът сочи към втория `Node` със стойност `2`. Трети елемент нямаме, затова на втория възел `next` сочи към `None`. Мисля че схващате идеята. Познайте как ще изглежда картинката, ако добавим трети и четвърти възел.
+Първият елемент е със стойност `1`. След като вече имаме и втори елемент, `next` на първия обект сочи към втория `Node` със стойност `2`. Трети елемент нямаме, затова на втория възел `next` сочи към `None`. Мисля че схващате идеята. Познайте как ще изглежда картинката, ако добавим трети и четвърти възел.
 
 <img src="./resources/all_nodes.jpg">
 
@@ -42,7 +42,7 @@ class Node:
 		self.value = value
 		self.next = None
 ```
-Всеки път, когато трябва да създадем възел, ще създаваме обект от клас Node. Всеки нов възел първоначално няма следващ такъв, но трябва все пак да има в себе си обект `next`. Затова създаваме и инициализираме `self.next = None`. 
+Всеки път, когато трябва да създадем възел, ще създаваме обект от клас Node. Всеки нов възел първоначално няма следващ такъв, но трябва все пак да има в себе си обект `next`. Затова създаваме и инициализираме <br>`self.next = None`. 
 
 Да създадем списъка на картинката:
 ```python
@@ -176,7 +176,7 @@ ll = LinkedList()
 ll.add(1)
 ```
 
-Държим `head` локално за обектите `LinkedList`, следователно го достъпваме посредством `self`. Казахме, че ще пазим размера на всеки свързан списък. За целта при инициализиране на нов обект `LinkedList`, създаваме променлива `size` и я инициализираме с 0 (първоначално списъкът е празен) - `self.size = 0`. Увеличаваме тази променлива накрая на метода `add`, т.е. всеки път като добавим нов елемент. 
+`head` ще е локален и отделен за всеки `LinkedList` обект, следователно го достъпваме вътре в класа посредством `self`. Казахме, че ще пазим размера на всеки свързан списък. За целта при инициализиране на нов обект `LinkedList`, създаваме променлива `size` и я инициализираме с 0 (първоначално списъкът е празен) - <br>`self.size = 0`. Увеличаваме тази променлива накрая на метода `add`, т.е. всеки път като добавим нов елемент. 
 
 Какво е първото нещо, което забелязваме щом изпълним този код? Че той не работи.
 
@@ -192,7 +192,7 @@ AttributeError: 'NoneType' object has no attribute 'next'
 
 Има един съществен проблем. Кога е празен списъкът? Когато `self.head = None`.
 
-Какво се случва? В `add` използваме `self.head`. `self.head`, обаче, е `None` в началото (още не сме добавили нищо). `current_node` сочи там, където и `self.head`, т.е. също към `None`. В цикъла се опитваме на `current_node`, който сочи към `None`, да достъпим атрибут с име `next`. Това е все едно да напишем <br>`None.next != None`. Не работи.
+Какво се случва? В `add` използваме `self.head`. `self.head`, обаче, е `None` в началото (още не сме добавили нищо). `current_node` сочи там, където и `self.head`, т.е. също към `None`. Още в условието на цикъла се опитваме на `current_node`, който сочи към `None`, да достъпим атрибут с име `next`. Това е все едно да напишем <br>`None.next != None`. Не работи.
 
 Просто решение - преди цикъла във функцията `add`, ще проверим дали списъкът не е празен. Ако е празен, казваме на `self.head` да сочи към новия елемент и приключваме. В случай, че ще ни трябва и в бъдеще, ще дефинираме функция, която казва дали списъкът е празен и ли не. Тя ще изглежда така:
 
@@ -278,12 +278,12 @@ class Iterator:
 			return current_value
 ```
 
-1. Итераторът трябва да започва от първия възел - `head`. 
+1. Итераторът трябва да започва от първия възел - `head`. След като това е изцяло нов обект, описан с негов си клас, трябва да подадем първия възел на `__init__` метода. От урока за итератори знаете, че на този обект (Iterator обекта) се извиква многократно метода `__next__` (на всяка итерация). Затова пазим текущото състояние на този итератор обект, а именно текущия възел от списъка (до къде е стигнал). Започваме от първия, затова си създаваме атрибут към обекта `current_node`, който сочи там, където и `head`.
 	```python
 			def __init__(self, head):
 				self.current_node = head
 	```
-1. Списъкът е празен, ако `head` сочи към `None`. Тогава и `current_node` ще е `None`. Отделно ще сме минали всички възли от списъка, когато `current_node` стане `None` (вижте картинките по-горе). И в двата случая `self.current_node` ще е `None`, затпва трябва да кажем, че приключваме с итерирането.
+1. Списъкът е празен, ако `head` сочи към `None`. Тогава и `current_node` ще е `None`. Отделно ще сме минали всички възли от списъка, когато `current_node` стане `None` (вижте картинките по-горе). И в двата случая `self.current_node` ще е `None`, затова трябва да кажем, че приключваме с итерирането.
 	```python
 			def __next__(self):
 				if self.current_node == None:
@@ -386,10 +386,10 @@ Mariika
 Scott Pilgrim
 ```
 
-Обърнете внимание на добавянето на стойности. Просто казваме `names.add('Multicet')`. Знаем, че класът сам се оправя да създаде новия възел. **В противен случай** трябваше ние да пишем `names.add(LinkedList.Node('Multicet'))`. Спестихме си малко писане на код.
+Обърнете внимание на добавянето на стойности. Просто казваме `names.add('Multicet')`. Знаем, че класът сам се оправя да създаде новия възел. **В противен случай** трябваше ние да пишем `names.add(LinkedList.Node('Multicet'))`. Спестихме си малко писане на код. Затова и по-рано като имплементирахме функцията `add`, казахме, че тя ще си създава възела и ще приема само стойност.
 
 ### len()
-Досега пазихме размера на списъка и го увеличавахме всеки път, когато добавим нов възел. За нищо не го използваме, обаче. 
+Досега пазихме размера на списъка и го увеличавахме всеки път, когато добавим нов възел. За нищо не го използваме обаче. 
 
 Как се взима размера на един `list` в Python? 
 ```python
@@ -483,6 +483,7 @@ Output:
 cars size: 4
 names size: 5
 ```
+
 ### Премахване на възел
 За да премахнем един възел, трябва просто да премахнем връзката към него. След като няма връзка към обекта, той ще бъде унищожен. Казано с думи - на възела, чийто `next` сочи към този, който искаме да изтрием, казваме, че следващият му възел е следващия на този, който искаме да изтрием. Ако имаме списък A -> B -> C (А сочи към В, който сочи към С) и искаме да изтрием B. Казваме просто A -> C (А да сочи към С).
 
@@ -495,8 +496,8 @@ names size: 5
 Дефинираме функция `delete` в LinkedList. Тя ще приема стойност. Трябва да изтрие първия възел в списъка, който държи същата стойност. Може да се направи и така, че да изтрие всички възли със същата стойност, но разликата няма да е голяма. Придържаме се към първия вариант.
 
 За да дефинираме функицята, трябва да съобразим две неща:
-	- Списъкът може да е празен - ако е празен, не трябва да правим нищо
-	- Нямаме достъп до предходния възел. - Ако имаме списък A -> B -> C и искаме да изтрием B. Ще итерираме по списъка, докато не стигнем този, който трябва да изтрием (в случая B). Проблемът е, че когато `current_node` е този, който трябва да изтрием, няма как да кажем на предишния да сочи към следващия. Или ако минаваме през всичките възли (A, B и C), и `current_node` е стигнал B, няма как да кажем на A да сочи към C.
+- Списъкът може да е празен - ако е празен, не трябва да правим нищо
+- Нямаме достъп до предходния възел. - Ако имаме списък A -> B -> C и искаме да изтрием B. Ще итерираме по списъка, докато не стигнем този, който трябва да изтрием (в случая B). Проблемът е, че когато `current_node` е този, който трябва да изтрием, няма как да кажем на предишния да сочи към следващия. Или ако минаваме през всичките възли (A, B и C), и `current_node` е стигнал B, няма как да кажем на A да сочи към C.
 
 <img src="./resources/delete_fail.png">
 
@@ -618,7 +619,6 @@ cars.add('Ford')
 
 print_info('before deletion', cars)
 
-
 cars.delete('BMW')
 print_info('after deletion', cars)
 
@@ -654,3 +654,286 @@ cars size: 1
 VW
 
 ```
+
+### Вмъкване на възел
+Вмъкването на възел ще е доста подобно на триенето на такъв. Отново ще работим с `current_node` и отново ще проверяваме следващия му възел. Функцията за вмъкване ще трябва да добави нов възел на мястото на друг. На мястото на кой възел ще вмъква, ще зависи от подадена стойност. Например ако имаме списък 1 -> 2 -> 4 -> 5, ще искаме да вмъкнем нов възел със стойност 3 на мястото на 4. Така ще се получи 1 -> 2 -> 3 -> 4 -> 5.
+
+Съобразяваме същите неща като при триенето:
+	- Списъкът може да е празен.
+	- Нямаме достъп до предходния възел, ако проверяваме дали да вмъкнем на мястото на `current_node`, а не на `current_node.next`.
+	- Може да вмъкваме на мястото на първия възел.
+
+<img src="./resources/insert_node.png">
+
+```python
+class InvalidInsertionError(Exception):
+	def __init__(self):
+		super().__init__("Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value")
+		
+	def insert(self, before_value, new_value):
+		new_node = LinkedList.Node(new_value)
+		insert_succeeded = False
+	
+		if self.is_empty():
+			insert_succeeded = False
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+		else:
+			current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+		
+		if insert_succeeded:
+			self.size += 1
+		else:
+			raise InvalidInsertionError
+```
+
+Какво прави функцията?
+1. `insert_succeeded = False` - Има два случая, в които вмъкването може да се провали - ако списъкът е празен или ако няма такъв възел, на чието място да вмъкнем (няма възел със стойност равна на `before_value`). Приемаме, че първоначално `insert_succeeded` е `False`, защото е по-лесно да му дадем стойност `True`, когато успеем да вмъкнем. В противен случай в `else` блока трябва да проверяваме дали цикълът е свършил без да вмъкваме каквото и да било и да зададем стойност `False`. Това е в случай, че сме създали `insert_succeeded` инициализирано с `True`, а не с `False`. Написано по сегашния начин си спестяваме някой друг `if`.
+1. Вмъкване в празен списък
+	```python
+		if self.is_empty():
+			insert_succeeded = False
+	```
+		Не можем да търсим да вмъкнем на място на някой възел, като нямаме никакви възли. Вмъкването не е успешно.
+1. Вмъкване на мястото на `head`
+	```python
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+	```
+	В случай, че мястото, на което вмъкваме, е първия възел - запазваме кой е първия възел (`tmp = self.head`), казваме, че сегашният първи възел вече ще е следващия на новия първи възел (`new_node.next = tmp`) и накрая казваме, че новият възел е първи (`self.head = new_node`). Вмъкването е успешно.
+1. Вмъкване навътре в списъка:
+	```python
+		current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+	```
+	Минаваме през всички възли и на всеки текущ възел (`current_node`) проверяваме дали не трябва да вмъкнем на мястото на следващия (`current_node.next`). 
+	- Ако условието (`if current_node.next.value == before_value:`) е вярно, значи вмъкваме на мястото на следващия елемент. 		
+		* Казваме, че на новия възел следващият е следващия на сегашния възел:
+			```python
+				new_node.next = current_node.next
+			```
+		* Казваме на текущия възел, че следващият му е новия възел:
+			```python
+				current_node.next = new_node
+			```
+		* Вмъкването е успешно и прекратяваме цикъла
+	- Ако условието е грешно преместваме `current_node` да сочи към следващия възел. 
+	След като мине цикъла, щом сме влезли в този блок, значи нищо от предните условия не се е изпълнило. Ако на нито една итерация не е влязло във вътрешния за цикъла `if`, `insert_succeeded` няма да бъде равно на `True`. 
+1. Края на функцията
+	```python
+	if insert_succeeded:
+		self.size += 1
+	else:
+		raise InvalidInsertionError
+	```
+- В случай, че вмъкването е успешно трябва да увеличим размера на списъка с 1.
+	
+- Ако нещо сме прецакали - дефинирали сме си изключението `InvalidInsertionError` и го създаваме, за да кажем, че нещо не е наред.
+
+LinkedList и InvalidInsertionError
+```python
+class InvalidInsertionError(Exception):
+	def __init__(self):
+		super().__init__("Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value")
+		
+class LinkedList:
+
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.next = None
+
+	def add(self, value):
+		new_node = LinkedList.Node(value)
+		current_node = self.head
+
+		if self.is_empty():
+			self.head = new_node
+		else:
+			while current_node.next != None:
+				current_node = current_node.next
+	
+			current_node.next = new_node
+			
+		self.size += 1
+
+	def delete(self, value):
+		if self.is_empty():
+			return
+			
+		current_node = self.head
+	
+		if self.head.value == value:
+			self.head = self.head.next
+		else:
+			while current_node.next != None:
+				if current_node.next.value == value:
+					to_delete_node = current_node.next
+					current_node.next = to_delete_node.next
+					break
+					
+				current_node = current_node.next
+				
+		self.size -= 1
+
+	def insert(self, before_value, new_value):
+		new_node = LinkedList.Node(new_value)
+		insert_succeeded = False
+	
+		if self.is_empty():
+			insert_succeeded = False
+		elif self.head.value == before_value:
+			tmp = self.head
+			new_node.next = tmp
+			self.head = new_node
+			insert_succeeded = True
+		else:
+			current_node = self.head
+			while current_node.next != None:
+				if current_node.next.value == before_value:
+					new_node.next = current_node.next
+					current_node.next = new_node
+					insert_succeeded = True
+					break
+				
+				current_node = current_node.next
+		
+		if insert_succeeded:
+			self.size += 1
+		else:
+			raise InvalidInsertionError
+
+	def __iter__(self):
+		return LinkedList.Iterator(self.head)
+
+	class Iterator:
+		def __init__(self, head):
+			self.current_node = head
+
+		def __next__(self):
+			if self.current_node == None:
+				raise StopIteration
+				
+			current_value = self.current_node.value
+			self.current_node = self.current_node.next
+			
+			return current_value
+
+	def is_empty(self):
+		return self.head == None
+
+	
+	def __len__(self):
+		return self.size
+```
+```python
+def print_list(linked_list):
+	for value in linked_list:
+		print(value)
+
+def print_info(msg, linked_list):
+	print(msg)
+	print('size: {}'.format(len(linked_list)))
+	print_list(linked_list)
+	print()	
+
+numbers = LinkedList()
+
+for i in range(5):
+	numbers.add(i)
+	
+
+print_info('before insertion', numbers)
+
+numbers.insert(3, 2.5)
+print_info('after insertion', numbers)
+
+numbers.insert(0, -1)
+print_info('after second insertion', numbers)
+
+
+numbers.insert(4, 3.5)
+print_info('after third insertion', numbers)
+
+print('invalid insertion')
+numbers.insert(5, 4)
+```
+
+```
+Output:
+before insertion
+size: 5
+0
+1
+2
+3
+4
+
+after insertion
+size: 6
+0
+1
+2
+2.5
+3
+4
+
+after second insertion
+size: 7
+-1
+0
+1
+2
+2.5
+3
+4
+
+after third insertion
+size: 8
+-1
+0
+1
+2
+2.5
+3
+3.5
+4
+
+invalid insertion
+Traceback (most recent call last):
+  File "list_ex.py", line 129, in <module>
+    numbers.insert(5, 4)
+  File "list_ex.py", line 74, in insert
+    raise InvalidInsertionError
+__main__.InvalidInsertionError: Attempring to insert into an empty list or into one, that doesn't have a node with the given before_value
+```
+
+Линк към целия код: https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/linked_list/linked_list.py
+___
+### Sorry of the long post. Here is a cool potato
+![](https://i.imgur.com/HF9FmkL.jpg)
