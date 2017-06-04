@@ -694,5 +694,7 @@ Output:
 <function <lambda> at 0x7f35700fdc80>
 <function <lambda> at 0x7f35700fdd08>
 ```
+Линк към целия код: https://github.com/bkolarov/elsys_python_course_9a_2016/blob/master/term2/queue_stack/queue/queue.py
+
 ___
 <img src="https://previews.123rf.com/images/lamplightersdv/lamplightersdv0910/lamplightersdv091000034/5736732-Dog-from-washed-potato-with-carrot-tail-Stock-Photo.jpg">
