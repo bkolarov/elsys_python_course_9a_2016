@@ -44,7 +44,7 @@ class Queue:
         # The queue is empty but it must have its attributes head and tail. Create them and initialize them with None.
         # Also create the size attribute and initialize it with 0 (again, the queue is empty).
 		self.head = self.tail = None
-        self.size = 0
+        	self.size = 0
 		
 	class Node:
 		def __init__(self, value):
