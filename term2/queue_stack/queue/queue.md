@@ -34,3 +34,82 @@
 
 На изображението по-долу е показана една и съща опашка. В горната опашка махаме един възел и добавяме нов. Долната опашка е резултата.
 <img src="./resources/queue_operations.png">
+
+### Клас Queue
+Също като при свързания списък, ще имаме един клас, който ще се грижи за добавянето и махането на елементи. Ще имаме и втори вътрешен клас Node, който да представлява възела.
+
+```python
+class Queue:
+	def __init__(self):
+        # The queue is empty but it must have its attributes head and tail. Create them and initialize them with None.
+        # Also create the size attribute and initialize it with 0 (again, the queue is empty).
+		self.head = self.tail = None
+        self.size = 0
+		
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.prev = None
+```
+
+### enqueue
+Функцията за добавяне ще приема стойността, която искаме да държим в опашката. Тя ще създава възела и ще го добавя като предишен на сегашния `tail`. Имаме два случая, които могат да възникнат:
+- Опашката може да е празна - тогава и `head` и `tail` ще бъдат `None`. В този случай и на двата ще кажем да сочат към новия възел.
+- Опашката не е празна - тогава просто добавяме новия възел като предишен на `tail`. После преместваме `tail` да сочи към новия възел, тъй като той ще е новият последен такъв. Когато се наредите на опашка в лавката, вие ставате последния чакащ.
+
+```python
+def enqueue(self, value):
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+		
+	def is_empty(self):
+		return self.head == None and self.tail == None
+```
+```
+q = Queue()
+
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+
+current = q.head
+while current != None:
+	print(current.value)
+	current = current.prev
+```
+```
+Output:
+1
+2
+3
+```
+Какво прави функцията?
+- Функцията приема стойност. Създаваме възел, в който да я държим:
+    ```python
+    def enqueue(self, value):
+		new_node = Queue.Node(value)
+    ```
+- Обработка на случая, ако опашката е празна:
+    ```python
+    if self.is_empty():
+			self.head = self.tail = new_node
+    ...
+    ```
+    Дефинирали сме си функция, която проверява дали опашката е празна и връща съответно `True` или `False`. Опашката е празна, когато и `head` и `tail` сочат към `None`. 
+    В случай, че опашката е празна, когато добавим нов възел, той е и пръв и последен. Следователно и `head` и `tail` трябва да сочат към новия възел.
+- Добавяне, когато в опашката има възли:
+    ```python
+    ...
+    else:
+			self.tail.prev = new_node
+			self.tail = new_node
+    ```
+    Ако в опашката вече има възли, то `tail` сочи към текущия последен такъв. Когато добавяме нов, казваме на последния кой му е преидшен: `self.tail.prev = new_node`. След което преместваме `tail` да сочи към новия последен: `self.tail = new_node`. 
+- Увеличаваме размера с единица.
