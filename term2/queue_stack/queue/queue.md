@@ -235,3 +235,78 @@ elif self.size == 1:
 ```
 <img src="./resources/dequeue_last_node.png">
 
+Целият клас досега:
+```python
+class Queue:
+	def __init__(self):
+		self.head = self.tail = None
+		self.size = 0
+		
+	class Node:
+		def __init__(self, value):
+			self.value = value
+			self.prev = None
+			
+	def enqueue(self, value):
+		new_node = Queue.Node(value)
+		
+		if self.is_empty():
+			self.head = self.tail = new_node
+		else:
+			self.tail.prev = new_node
+			self.tail = new_node
+			
+		self.size += 1
+		
+	def dequeue(self):
+		dequeued_value = None
+		
+		if self.is_empty():
+			dequeued_value = None
+		elif self.size == 1:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			self.tail = None
+		else:
+			dequeued_value = self.head.value
+			self.head = self.head.prev
+			
+			
+		self.size = (self.size - 1) if self.size > 0 else 0
+		
+		return dequeued_value
+		
+	def __len__(self):
+		return self.size
+		
+	def is_empty(self):
+		return self.head == None and self.tail == None
+```
+
+## peek()
+`peek()` е една доста проста функция. Тя връща стойността на първия възел в опашката (т.е. връща стойността на възела, към който сочи `head`), без да го вади.
+
+```python
+def peek(self):
+	if self.is_empty():
+		return None
+	else:
+		return self.head.value
+```
+```python
+q = Queue()
+
+q.enqueue('First')
+q.enqueue('Second')
+q.enqueue('Third')
+
+print('peek: {}'.format(q.peek()))
+print('dequeue: {}'.format(q.dequeue()))
+print('peek: {}'.format(q.peek()))
+```
+```
+Output:
+peek: First
+dequeue: First
+peek: Second
+```
