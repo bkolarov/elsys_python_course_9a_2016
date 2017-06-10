@@ -1,8 +1,3 @@
-class InvalidIndexError(Exception):
-	def __init__(self, index, size):
-		super().__init__('Index must be <= len(queue) and > 0. Your stack is of size: {}.'.format(size))
-		self.index = index
-
 class InvalidNodeError(Exception):
 	def __init__(self):
 		super().__init__("Pushed node's value must not be None.")
