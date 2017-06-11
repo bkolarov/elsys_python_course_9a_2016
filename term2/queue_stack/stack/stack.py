@@ -22,7 +22,7 @@ class Stack:
 	'''
 	Push new value to the top of the stack.
 	Remember that the principle of adding and removing
-	values from the stack is FIFO - First In First Out.
+	values from the stack is LIFO - Last In First Out.
 	'''
 	def push(self, value):
 		if value == None:
@@ -48,7 +48,7 @@ class Stack:
 	'''
 	Pop the most top value from the stack.
 	Remember that the principle of adding and removing
-	values from the stack is FIFO - First In First Out.
+	values from the stack is LIFO - Last In First Out.
 	The last node, that has been pushed, must be poped now.
 	'''
 	def pop(self):
