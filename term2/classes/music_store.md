@@ -58,3 +58,44 @@ class DownloadProduct(Product):
     self.downloadQuality = downloadQuality
 ```
 "Реализирайте йерархията от класове, така че да няма класове с еднакви атрибути." Направихме го. Всички продукти: CDProduct, VinylProduct и DownloadProduct наследяват атрибутите на Product, които са написани само веднъж точно в Product. Всеки един от трите продукта си има свой собствен атрибут, различен от на останалите.
+
+
+"Предвид, че има различни видове продукти, значи че има и различни начини те да се купят. 
+Освен класовете за продукти има класове, които продават всеки отделен вид продукт. Всеки "продавач" може да 
+продава определен продукт "sell(item)", но всеки "продавач" го прави по различен начин."
+```pyhton
+class Seller:
+  def sell(self, item):
+    pass
+```
+
+"Всеки "продавач" може да 
+продава определен продукт "sell(item)", но всеки "продавач" го прави по различен начин."
+
+```python
+class CDSeller(Seller):
+  def sell(self, item):
+    print('Sending CD: {}'.format(item))
+    
+class VinylSeller(Seller):
+  def sell(self, item):
+    print('Sending Vinyl: {}'.format(item))
+    
+class DownloadSeller(Seller):
+  def sell(self, item):
+    print('Downloading: {}'.format(item))
+```
+
+"Дефинирайте изключение MethodNotImplementedError, което ще възникне, ако се извика "sell" и той не е имплементиран."
+```python
+class MethodNotImplementedError(Exception):
+  def __init__(self):
+    super().__init__('Method is not implemented!')
+```
+
+"... което ще възникне, ако се извика "sell" и той не е имплементиран"
+```python
+class Seller:
+  def sell(self, item):
+    raise MethodNotImplementedError
+```
