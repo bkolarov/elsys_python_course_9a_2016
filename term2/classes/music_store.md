@@ -33,16 +33,28 @@ class DownloadProduct(Product):
   pass
 ```
 
-#...всеки продукт ще има свои собствени атрибути: downloadQuality, vinylSize и shippingCost.
-# Преценяваме кой атрибут за кой продукт е. Добавяме атрибутите към съответните класове
+...всеки продукт ще има свои собствени атрибути: downloadQuality, vinylSize и shippingCost.
+Преценяваме кой атрибут за кой продукт е. Добавяме атрибутите към съответните класове
 
 ```python
 class CDProduct(Product):
-  pass
+  # Обърнете внимание, че подаваме на CDProduct всички необходими стойности за Product. Все пак CDProduct е вид продукт.
+  # Разликата е там, че добавяме още един атрибут (shippingCost), за който също подаваме стойност.
+  def __init__(self, artist, title, price, tracklist, shippingCost):
+    # Извикваме __init__ метода на Product и му подаваме необходимите стойности.
+    super().__init__(artist, title, price, tracklist)
+    # Запазваме това, което е само за CDProduct в негов си атрибут.
+    self.shippingCost = shippingCost
 
 class VinylProduct(Product):
-  pass
-
+  # Същото като при CDProduct, но VinylSize има друг атрибут с друго име.
+  def __init__(self, artist, title, price, tracklist, vinylSize):
+    super().__init__(artist, title, price, tracklist)
+    self.vinylSize = vinylSize
+    
 class DownloadProduct(Product):
-  pass
+  def __init__(self, artist, title, price, tracklist, downloadQuality):
+    super().__init__(artist, title, price, tracklist)
+    self.downloadQuality = downloadQuality
 ```
+"Реализирайте йерархията от класове, така че да няма класове с еднакви атрибути." Направихме го. Всички продукти: CDProduct, VinylProduct и DownloadProduct наследяват атрибутите на Product, които са написани само веднъж точно в Product. Всеки един от трите продукта си има свой собствен атрибут, различен от на останалите.
