@@ -61,7 +61,7 @@ read_splitted('cars.csv', line_to_list)
 ```
 
 "Генераторът да връща резултата от споменатата функция. Взимайте целите редове, чрез генератора от Задача 1."
-```def
+```python
 def read_splitted(file_name, func):
     for line in read_file(file_name):
         yield func(line)
