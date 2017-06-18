@@ -99,6 +99,7 @@ line_to_list = lambda line: line.split(';')
 print(line_to_list('Buick Skylark 320;15.0;8;350.0;165.0;3693.;11.5;70;US'))
 ```
 
+Използваме ламбда в третата задача.
 ```python
 def get_europe_cars(file_name):
     for line_list in read_splitted(file_name, lambda line: line.split(';')):
